@@ -3,11 +3,11 @@
     {
       "type": "aws-sam",
       "request": "direct-invoke",
-      "name": "butler:HelloWorldFunction (nodejs18.x)",
+      "name": "UserLogin",
       "invokeTarget": {
         "target": "template",
         "templatePath": "${workspaceFolder}/back-end/template.yaml",
-        "logicalId": "HelloWorldFunction"
+        "logicalId": "UserLoginFunction"
       },
       "lambda": {
         "payload": {},
@@ -18,11 +18,11 @@
     {
       "type": "aws-sam",
       "request": "direct-invoke",
-      "name": "API butler:HelloWorldFunction (nodejs18.x)",
+      "name": "API UserLogin",
       "invokeTarget": {
         "target": "api",
         "templatePath": "${workspaceFolder}/back-end/template.yaml",
-        "logicalId": "HelloWorldFunction"
+        "logicalId": "UserLoginFunction"
       },
       "api": {
         "path": "/hello",

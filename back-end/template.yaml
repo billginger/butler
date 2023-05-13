@@ -1,33 +1,30 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-  
+
 Globals:
   Function:
     Timeout: 3
-    Handler: app.lambdaHandler
+    Handler: app.handler
     Runtime: nodejs18.x
     Architectures:
       - arm64
 
 Resources:
-  HelloWorldFunction:
+  UserLoginFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: hello-world/
+      CodeUri: user-login/
       Events:
-        HelloWorld:
+        UserLogin:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /user-login
             Method: get
 
 Outputs:
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+  UserLoginApi:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/user-login/"
+  UserLoginFunction:
+    Value: !GetAtt UserLoginFunction.Arn
+  UserLoginFunctionIamRole:
+    Value: !GetAtt UserLoginFunctionRole.Arn
