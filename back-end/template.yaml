@@ -20,6 +20,23 @@ Resources:
           Properties:
             Path: /user-login
             Method: get
+  AppTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: app
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: secret
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: secret
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
 
 Outputs:
   UserLoginApi:
