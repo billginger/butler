@@ -1,8 +1,25 @@
 import https from 'https';
+import { ScanCommand } from '@aws-sdk/lib-dynamodb';
+import { ddbDocClient } from './libs/ddbDocClient.mjs';
 
-const getOpenid = (appid, secret, code) => {
-  const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=
-    authorization_code`;
+const params = {
+  TableName: 'app',
+  Limit: 1,
+};
+
+const getApp = async () => {
+  const data = await ddbDocClient.send(new ScanCommand(params));
+  const item = data.Items?.[0];
+  const app = {
+    id: item?.id,
+    secret: item?.secret,
+  };
+  return app;
+};
+
+const getOpenid = (appId, appSecret, code) => {
+  const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}
+    &grant_type=authorization_code`;
   return new Promise((resolve, reject) => {
     const req = https.get(url, res => {
       let rawData = '';
@@ -21,6 +38,8 @@ const getOpenid = (appid, secret, code) => {
 
 export const handler = async (event, context) => {
   try {
+    const app = await getApp();
+    console.log(JSON.stringify(app));
     return {
       statusCode: 200,
       body: JSON.stringify({
