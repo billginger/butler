@@ -17,9 +17,9 @@ const getApp = async () => {
   return app;
 };
 
-const getOpenid = (appId, appSecret, code) => {
-  const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}
-    &grant_type=authorization_code`;
+const getSession = (appId, appSecret, code) => {
+  const url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + appSecret + '&js_code='
+    + code + '&grant_type=authorization_code';
   return new Promise((resolve, reject) => {
     const req = https.get(url, res => {
       let rawData = '';
@@ -27,7 +27,7 @@ const getOpenid = (appId, appSecret, code) => {
         rawData += chunk;
       });
       res.on('end', () => {
-        resolve(rawData);
+        resolve(JSON.parse(rawData));
       });
     });
     req.on('error', err => {
@@ -39,7 +39,10 @@ const getOpenid = (appId, appSecret, code) => {
 export const handler = async (event, context) => {
   try {
     const app = await getApp();
-    console.log(JSON.stringify(app));
+    const code = event.queryStringParameters?.code;
+    const session = await getSession(app.id, app.secret, code);
+    const openid = session.openid;
+    console.log(openid);
     return {
       statusCode: 200,
       body: JSON.stringify({
