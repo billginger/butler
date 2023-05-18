@@ -27,13 +27,9 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
-        - AttributeName: secret
-          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
-        - AttributeName: secret
-          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
@@ -44,13 +40,9 @@ Resources:
       AttributeDefinitions:
         - AttributeName: openid
           AttributeType: S
-        - AttributeName: name
-          AttributeType: S
       KeySchema:
         - AttributeName: openid
           KeyType: HASH
-        - AttributeName: name
-          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
