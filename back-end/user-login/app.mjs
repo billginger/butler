@@ -1,13 +1,12 @@
 import https from 'https';
-import { ScanCommand } from '@aws-sdk/lib-dynamodb';
+import { ScanCommand, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from './libs/ddbDocClient.mjs';
 
-const params = {
-  TableName: 'app',
-  Limit: 1,
-};
-
 const getApp = async () => {
+  const params = {
+    TableName: 'app',
+    Limit: 1,
+  };
   const data = await ddbDocClient.send(new ScanCommand(params));
   const item = data.Items?.[0];
   const app = {
@@ -36,21 +35,29 @@ const getSession = (appId, appSecret, code) => {
   });
 };
 
+const getRegistered = async (openid) => {
+  if (!openid) return false;
+  const params = {
+    TableName: 'user',
+    Key: { openid },
+  };
+  const data = await ddbDocClient.send(new GetCommand(params));
+  const registered = !!data.Item?.openid;
+  return registered;
+};
+
 export const handler = async (event, context) => {
   try {
     const app = await getApp();
     const code = event.queryStringParameters?.code;
     const session = await getSession(app.id, app.secret, code);
-    const openid = session.openid;
-    console.log(openid);
+    const registered = await getRegistered(session.openid);
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        message: 'hi~'
-      })
+      body: JSON.stringify({ registered }),
     };
   } catch (err) {
     console.log(err);
-    return err;
+    return { statusCode: 500 };
   }
 };
