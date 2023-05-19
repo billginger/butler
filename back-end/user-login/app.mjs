@@ -1,5 +1,5 @@
 import https from 'https';
-import { ScanCommand, GetCommand } from '@aws-sdk/lib-dynamodb';
+import { ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from './libs/ddbDocClient.mjs';
 
 const getApp = async () => {
@@ -8,16 +8,12 @@ const getApp = async () => {
     Limit: 1,
   };
   const data = await ddbDocClient.send(new ScanCommand(params));
-  const item = data.Items?.[0];
-  const app = {
-    id: item?.id,
-    secret: item?.secret,
-  };
+  const app = data.Items[0];
   return app;
 };
 
-const getSession = (appId, appSecret, code) => {
-  const url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + appSecret + '&js_code='
+const getSession = (app, code) => {
+  const url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + app.id + '&secret=' + app.secret + '&js_code='
     + code + '&grant_type=authorization_code';
   return new Promise((resolve, reject) => {
     const req = https.get(url, res => {
@@ -35,29 +31,40 @@ const getSession = (appId, appSecret, code) => {
   });
 };
 
-const getRegistered = async (openid) => {
-  if (!openid) return false;
+const getToken = async (openid, requestContext) => {
+  const tokenCode = requestContext.requestId.replace(/-/g, '');
+  const tokenExpires = requestContext.requestTimeEpoch + 86400;
   const params = {
     TableName: 'user',
     Key: { openid },
+    ConditionExpression: 'attribute_exists(openid)',
+    UpdateExpression: 'set tokenCode = :tc, tokenExpires = :te',
+    ExpressionAttributeValues: {
+      ':tc': tokenCode,
+      ':te': tokenExpires,
+    },
+    ReturnValues: 'ALL_NEW',
   };
-  const data = await ddbDocClient.send(new GetCommand(params));
-  const registered = !!data.Item?.openid;
-  return registered;
+  const data = await ddbDocClient.send(new UpdateCommand(params));
+  const token = data.Attributes.tokenCode;
+  return token;
 };
 
 export const handler = async (event, context) => {
   try {
     const app = await getApp();
-    const code = event.queryStringParameters?.code;
-    const session = await getSession(app.id, app.secret, code);
-    const registered = await getRegistered(session.openid);
+    const code = event.queryStringParameters.code;
+    const session = await getSession(app, code);
+    const token = await getToken(session.openid, event.requestContext);
     return {
       statusCode: 200,
-      body: JSON.stringify({ registered }),
+      body: JSON.stringify({ token }),
     };
   } catch (err) {
-    console.log(err);
-    return { statusCode: 500 };
+    console.error(err);
+    return {
+      statusCode: 500,
+      body: err.message,
+    };
   }
 };
