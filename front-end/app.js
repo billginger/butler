@@ -1,4 +1,29 @@
-// app.js
+import config from './config'
+
+const userLogin = code => {
+  wx.showLoading()
+  wx.request({
+    url: config.apiUrl + '/user-login',
+    data: { code },
+    success: res => {
+      if (res.statusCode == 200) {
+        wx.setStorageSync('token', res.data.token)
+      } else {
+        console.error(res.errMsg)
+      }
+    },
+    fail: res => {
+      wx.showToast({
+        title: '网络请求失败',
+        icon: 'error',
+      })
+    },
+    complete: res => {
+      wx.hideLoading()
+    }
+  })
+}
+
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -9,7 +34,11 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          userLogin(res.code)
+        } else {
+          console.error(res.errMsg)
+        }
       }
     })
   },
