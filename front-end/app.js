@@ -1,13 +1,15 @@
 import config from './config'
 
 const userLogin = code => {
-  wx.showLoading()
   wx.request({
     url: config.apiUrl + '/user-login',
     data: { code },
     success: res => {
       if (res.statusCode == 200) {
         wx.setStorageSync('token', res.data.token)
+        wx.switchTab({
+          url: '../index/index'
+        })
       } else {
         console.error(res.errMsg)
       }
@@ -17,20 +19,12 @@ const userLogin = code => {
         title: '网络请求失败',
         icon: 'error',
       })
-    },
-    complete: res => {
-      wx.hideLoading()
     }
   })
 }
 
 App({
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
@@ -41,8 +35,5 @@ App({
         }
       }
     })
-  },
-  globalData: {
-    userInfo: null
   }
 })

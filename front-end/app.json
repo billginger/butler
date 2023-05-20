@@ -1,12 +1,13 @@
 {
   "pages":[
+    "pages/landing/landing",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "小管家",
+    "navigationBarTitleText": "如意小管家",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
