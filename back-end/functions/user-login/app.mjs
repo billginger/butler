@@ -1,6 +1,6 @@
 import https from 'https';
+import { ddbDocClient } from 'layer-ddb';
 import { ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
-import { ddbDocClient } from './libs/ddbDocClient.mjs';
 
 const getApp = async () => {
   const params = {

@@ -10,6 +10,7 @@ Globals:
       - arm64
     Layers:
       - !Ref DependenciesLayer
+      - !Ref LibsLayer
 
 Resources:
   UserLoginFunction:
@@ -34,7 +35,14 @@ Resources:
         - arm64
     Metadata:
       BuildMethod: nodejs18.x
-
+  LibsLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layers/libs
+      CompatibleRuntimes: 
+        - nodejs18.x
+      CompatibleArchitectures:
+        - arm64
   AppTable:
     Type: AWS::DynamoDB::Table
     Properties:
