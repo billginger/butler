@@ -15,7 +15,7 @@ Resources:
   UserLoginFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: user-login/
+      CodeUri: functions/user-login
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
