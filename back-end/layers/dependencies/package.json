@@ -1,5 +1,5 @@
 {
-  "name": "user-login",
+  "name": "butler-dependencies",
   "version": "1.0.0",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.332.0",

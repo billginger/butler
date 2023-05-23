@@ -8,6 +8,8 @@ Globals:
     Runtime: nodejs18.x
     Architectures:
       - arm64
+    Layers:
+      - !Ref DependenciesLayer
 
 Resources:
   UserLoginFunction:
@@ -22,6 +24,17 @@ Resources:
           Properties:
             Path: /user-login
             Method: get
+  DependenciesLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layers/dependencies
+      CompatibleRuntimes: 
+        - nodejs18.x
+      CompatibleArchitectures:
+        - arm64
+    Metadata:
+      BuildMethod: nodejs18.x
+
   AppTable:
     Type: AWS::DynamoDB::Table
     Properties:
