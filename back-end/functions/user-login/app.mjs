@@ -1,5 +1,6 @@
 import https from 'https';
 import { ddbDocClient } from 'layer-ddb';
+import { getMilliseconds } from 'layer-date';
 import { ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 
 const getApp = async () => {
@@ -33,7 +34,7 @@ const getSession = (app, code) => {
 
 const getToken = async (openid, requestContext) => {
   const tokenCode = requestContext.requestId.replace(/-/g, '');
-  const tokenExpires = requestContext.requestTimeEpoch + 86400;
+  const tokenExpires = getMilliseconds(requestContext.requestTimeEpoch) + 864e5;
   const params = {
     TableName: 'user',
     Key: { openid },
@@ -50,10 +51,10 @@ const getToken = async (openid, requestContext) => {
   return token;
 };
 
-export const handler = async (event, context) => {
+export const handler = async (event) => {
   try {
     const app = await getApp();
-    const code = event.queryStringParameters.code;
+    const { code } = event.queryStringParameters;
     const session = await getSession(app, code);
     const token = await getToken(session.openid, event.requestContext);
     return {
