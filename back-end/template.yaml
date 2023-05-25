@@ -63,12 +63,24 @@ Resources:
       AttributeDefinitions:
         - AttributeName: openid
           AttributeType: S
+        - AttributeName: tokenCode
+          AttributeType: S
       KeySchema:
         - AttributeName: openid
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
+      GlobalSecondaryIndexes:
+        - IndexName: tokenIndex
+          KeySchema:
+            - AttributeName: tokenCode
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 2
+            WriteCapacityUnits: 2
   TransactionTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -76,12 +88,28 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
+        - AttributeName: createUser
+          AttributeType: S
+        - AttributeName: isDeleted
+          AttributeType: N
       KeySchema:
         - AttributeName: id
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
+      GlobalSecondaryIndexes:
+        - IndexName: userIndex
+          KeySchema:
+            - AttributeName: createUser
+              KeyType: HASH
+            - AttributeName: isDeleted
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 2
+            WriteCapacityUnits: 2
 
 Outputs:
   UserLoginApi:
