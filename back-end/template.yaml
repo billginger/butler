@@ -25,6 +25,18 @@ Resources:
           Properties:
             Path: /user-login
             Method: get
+  HomeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/home
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        Home:
+          Type: Api
+          Properties:
+            Path: /home
+            Method: get
   DependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:

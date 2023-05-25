@@ -39,10 +39,10 @@ const getToken = async (openid, requestContext) => {
     TableName: 'user',
     Key: { openid },
     ConditionExpression: 'attribute_exists(openid)',
-    UpdateExpression: 'set tokenCode = :tc, tokenExpires = :te',
+    UpdateExpression: 'set tokenCode = :c, tokenExpires = :e',
     ExpressionAttributeValues: {
-      ':tc': tokenCode,
-      ':te': tokenExpires,
+      ':c': tokenCode,
+      ':e': tokenExpires,
     },
     ReturnValues: 'ALL_NEW',
   };
