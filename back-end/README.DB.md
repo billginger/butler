@@ -47,9 +47,6 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "id": {
     "S": "交易的 id，系统生成"
   },
-  "direction": {
-    "N": "交易类型：1 收入，2 支出，3 转账"
-  },
   "dateYear": {
     "N": "交易日期的年"
   },
@@ -65,8 +62,11 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "amount": {
     "N": "金额"
   },
-  "account": {
-    "S": "账户，可维护"
+  "accountFrom": {
+    "S": "付款账户，可维护，用于支出和转账"
+  },
+  "accountTo": {
+    "S": "收款账户，可维护，用于收款和转账"
   },
   "category": {
     "S": "分类，可维护"
