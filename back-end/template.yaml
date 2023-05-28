@@ -77,6 +77,8 @@ Resources:
           AttributeType: S
         - AttributeName: tokenCode
           AttributeType: S
+        - AttributeName: loginDate
+          AttributeType: N
       KeySchema:
         - AttributeName: openid
           KeyType: HASH
@@ -88,6 +90,8 @@ Resources:
           KeySchema:
             - AttributeName: tokenCode
               KeyType: HASH
+            - AttributeName: loginDate
+              KeyType: RANGE
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:

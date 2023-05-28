@@ -34,21 +34,19 @@ const getSession = (app, code) => {
 
 const getToken = async (openid, requestContext) => {
   const tokenCode = requestContext.requestId.replace(/-/g, '');
-  const tokenExpires = getMilliseconds(requestContext.requestTimeEpoch) + 864e5;
+  const loginDate = getMilliseconds(requestContext.requestTimeEpoch);
   const params = {
     TableName: 'user',
     Key: { openid },
     ConditionExpression: 'attribute_exists(openid)',
-    UpdateExpression: 'set tokenCode = :c, tokenExpires = :e',
+    UpdateExpression: 'set tokenCode = :c, loginDate = :d',
     ExpressionAttributeValues: {
       ':c': tokenCode,
-      ':e': tokenExpires,
+      ':d': loginDate,
     },
-    ReturnValues: 'ALL_NEW',
   };
-  const data = await ddbDocClient.send(new UpdateCommand(params));
-  const token = data.Attributes.tokenCode;
-  return token;
+  await ddbDocClient.send(new UpdateCommand(params));
+  return tokenCode;
 };
 
 export const handler = async (event) => {

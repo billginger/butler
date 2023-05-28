@@ -28,8 +28,8 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "tokenCode": {
     "S": "用户的 token，系统生成，访问小程序的唯一凭证"
   },
-  "tokenExpires": {
-    "N": "token 的有效期，用户登录 24 小时后过期"
+  "loginDate": {
+    "N": "用户最后一次登录的时间戳，系统填写"
   },
   "joinCode": {
     "S": "邀请码，只能由账本管理员生成，并在成功邀请账本协管员后销毁"
