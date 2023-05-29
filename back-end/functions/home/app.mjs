@@ -48,6 +48,7 @@ const getAccounts = async (transaction) => {
   };
   const data = await ddbDocClient.send(new QueryCommand(params));
   const accounts = data.Items;
+  delete transaction.ledger;
   return accounts;
 };
 
