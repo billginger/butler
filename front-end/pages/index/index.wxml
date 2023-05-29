@@ -1,23 +1,40 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="container" wx:if="{{user.nickname}}">
+  <view class="paragraph">
+    <text class="text-bold">{{user.nickname}}</text>
+    <text>，{{greeting}}！</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="paragraph">
+    <text>欢迎使用如意小管家。您可以点击页面底部的“记账”选项卡来进行记账。</text>
+  </view>
+  <view wx:if="{{transaction}}">
+    <view class="paragraph">
+      <text>您上次记账的时间是 </text>
+      <text class="text-bold">{{transaction.createDate}}</text>
+      <text>，内容是：</text>
+    </view>
+    <view class="table">
+      <view class="table-header">
+        <view class="table-column-1">
+          <text>日期</text>
+        </view>
+        <view class="table-column-2">
+          <text>摘要</text>
+        </view>
+        <view class="table-column-3">
+          <text>金额</text>
+        </view>
+      </view>
+      <view class="table-body">
+        <view class="table-column-1">
+          <text>{{transaction.date}}</text>
+        </view>
+        <view class="table-column-2">
+          <text>{{transaction.summary}}</text>
+        </view>
+        <view class="table-column-3 text-right">
+          <text class="direction-{{transaction.direction}}">{{transaction.amount}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

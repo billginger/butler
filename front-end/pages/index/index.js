@@ -1,48 +1,89 @@
-// index.js
-// 获取应用实例
-const app = getApp()
+import config from '../../config'
+import { doubleDigits, twoDecimals } from '../../utils/number'
+import { formatDate } from '../../utils/date'
+
+const getDirection = transaction => (
+  transaction.accountFrom && transaction.accountTo ? 3 : transaction.accountFrom ? 2 : 1
+)
+
+const getDate = transaction => (
+  `${transaction.dateYear}-${doubleDigits(transaction.dateMonth)}-${doubleDigits(transaction.dateDay)}`
+)
+
+const getAmount = data => {
+  const { transaction, accounts } = data
+  const account = transaction.accountFrom || transaction.accountTo
+  const currency = accounts.find(({ id }) => id == account).currency
+  const amount = twoDecimals(transaction.amount)
+  return `${currency}${amount}`
+}
+
+const processTransaction = data => {
+  const { transaction } = data
+  if (!transaction) return null
+  transaction.createDate = formatDate(new Date(transaction.createDate))
+  transaction.direction = getDirection(transaction)
+  transaction.date = getDate(transaction)
+  transaction.amount = getAmount(data)
+  return transaction
+}
+
+const getGreeting = () => {
+  const hour = new Date().getHours()
+  if (hour >= 5 && hour < 9) {
+    return '早上好'
+  }
+  if (hour >= 9 && hour < 12) {
+    return '上午好'
+  }
+  if (hour >= 12 && hour < 13) {
+    return '中午好'
+  }
+  if (hour >= 13 && hour < 18) {
+    return '下午好'
+  }
+  return '晚上好'
+}
+
+const getData = callback => {
+  const token = wx.getStorageSync('token')
+  wx.showLoading()
+  wx.request({
+    url: config.apiUrl + '/home',
+    data: { token },
+    success: res => {
+      if (res.statusCode == 200) {
+        const { data } = res
+        data.transaction = processTransaction(data)
+        data.greeting = getGreeting()
+        callback(data)
+      } else {
+        console.error(res.errMsg)
+      }
+    },
+    fail: res => {
+      wx.showToast({
+        title: '网络请求失败',
+        icon: 'error',
+      })
+    },
+    complete: res => {
+      wx.hideLoading()
+    }
+  })
+}
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
-  },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    user: {},
+    transaction: {},
+    greeting: '',
   },
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
-  },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-  getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    getData(data => this.setData({
+      user: data.user,
+      transaction: data.transaction,
+      greeting: data.greeting,
+    }))
   }
 })

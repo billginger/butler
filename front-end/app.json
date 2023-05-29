@@ -5,10 +5,9 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "如意小管家",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [{

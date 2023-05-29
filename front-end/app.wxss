@@ -1,1 +1,56 @@
-/**app.wxss**/
+view {
+  box-sizing: border-box;
+}
+.container {
+  padding: 16rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.paragraph {
+  margin: 0 0 32rpx;
+}
+.text-bold {
+  font-weight: bold;
+}
+.text-right {
+  text-align: right;
+}
+.table {
+  border: 2rpx solid #666;
+  border-right: 0;
+  border-bottom: 0;
+}
+.table-header {
+  display: flex;
+  background: #f9f9f9;
+  font-weight: bold;
+}
+.table-body {
+  display: flex;
+}
+.table>view>view {
+  padding: 4rpx;
+  border-right: 2rpx solid #666;
+  border-bottom: 2rpx solid #666;
+}
+.table-column-1 {
+  width: 28%;
+}
+.table-column-2 {
+  width: 44%;
+}
+.table-column-3 {
+  width: 28%;
+}
+/* 收入 */
+.direction-1 {
+  color: #008000;
+}
+/* 支出 */
+.direction-2 {
+  color: #800000;
+}
+/* 转账 */
+.direction-3 {
+  color: #808000;
+}
