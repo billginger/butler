@@ -3,6 +3,6 @@
     <image class="icon" src="{{icon}}" />
   </view>
   <view>
-    <text class="loading">请稍等...</text>
+    <text>请稍等...</text>
   </view>
 </view>

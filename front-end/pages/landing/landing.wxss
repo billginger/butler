@@ -1,12 +1,10 @@
 .container {
   padding: 200rpx 0;
+  font-size: 28rpx;
+  color: #666;
   text-align: center;
-} 
+}
 .icon {
   width: 280rpx;
   height: 280rpx;
-}
-.loading {
-  font-size: 28rpx;
-  color: #666;
 }
