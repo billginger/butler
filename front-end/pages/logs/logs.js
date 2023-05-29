@@ -1,5 +1,4 @@
-// logs.js
-const util = require('../../utils/util.js')
+import { formatDate } from '../../utils/date'
 
 Page({
   data: {
@@ -9,7 +8,7 @@ Page({
     this.setData({
       logs: (wx.getStorageSync('logs') || []).map(log => {
         return {
-          date: util.formatTime(new Date(log)),
+          date: formatDate(new Date(log)),
           timeStamp: log
         }
       })
