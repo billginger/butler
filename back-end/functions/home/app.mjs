@@ -28,11 +28,27 @@ const getTransaction = async (createUser) => {
     },
     Limit: 1,
     ScanIndexForward: false,
-    ProjectionExpression: 'direction, dateYear, dateMonth, dateDay, summary, amount, createDate',
+    ProjectionExpression: 'dateYear, dateMonth, dateDay, summary, amount, accountFrom, accountTo, ledger, createDate',
   };
   const data = await ddbDocClient.send(new QueryCommand(params));
   const transaction = data.Items[0];
   return transaction;
+};
+
+const getAccounts = async (transaction) => {
+  if (!transaction) return [];
+  const params = {
+    TableName: 'account',
+    IndexName: 'userIndex',
+    KeyConditionExpression: 'createUser = :u',
+    ExpressionAttributeValues: {
+      ':u': transaction.ledger,
+    },
+    ProjectionExpression: 'id, currency',
+  };
+  const data = await ddbDocClient.send(new QueryCommand(params));
+  const accounts = data.Items;
+  return accounts;
 };
 
 export const handler = async (event) => {
@@ -41,6 +57,7 @@ export const handler = async (event) => {
     const timestamp = getMilliseconds(event.requestContext.requestTimeEpoch) - 864e5;
     const user = await getUser(token, timestamp);
     const transaction = await getTransaction(user.openid);
+    const accounts = await getAccounts(transaction);
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -48,6 +65,7 @@ export const handler = async (event) => {
           nickname: user.nickname,
         },
         transaction,
+        accounts,
       }),
     };
   } catch (err) {
