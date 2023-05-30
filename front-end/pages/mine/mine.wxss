@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 32rpx;
+  background: #2aae67;
+  font-size: 32rpx;
+  color: #fff;
+}
+.user-info {
+  display: flex;
+  align-items: flex-end;
+}
+.user-avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
+.user-content {
+  padding-left: 16rpx;
+}
+.user-role {
+  font-size: 28rpx;
+  opacity: 0.8;
+}
+.user-arrow {
+  width: 32rpx;
+  height: 32rpx;
+}

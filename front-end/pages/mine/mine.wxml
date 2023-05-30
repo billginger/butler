@@ -1,0 +1,18 @@
+<view class="header">
+  <view class="user-info">
+    <view class="user-avatar">
+      <open-data type="userAvatarUrl" />
+    </view>
+    <view class="user-content">
+      <view>
+        <open-data type="userNickName" />
+      </view>
+      <view class="user-role">
+        <text>账本管理员</text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <image class="user-arrow" src="/images/right.png" />
+  </view>
+</view>
