@@ -1,10 +1,12 @@
+import { getData } from '../../libs/get-data'
+
 Page({
   data: {
     user: {}
   },
   onLoad() {
-    this.setData({
-      user: {}
-    })
+    getData('/mine', data => this.setData({
+      user: data.user,
+    }))
   }
 })

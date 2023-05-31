@@ -1,4 +1,4 @@
-import config from '../../config'
+import { getData } from '../../libs/get-data'
 import { doubleDigits, twoDecimals } from '../../utils/number'
 import { formatDate } from '../../utils/date'
 
@@ -45,34 +45,6 @@ const getGreeting = () => {
   return '晚上好'
 }
 
-const getData = callback => {
-  const token = wx.getStorageSync('token')
-  wx.showLoading()
-  wx.request({
-    url: config.apiUrl + '/home',
-    data: { token },
-    success: res => {
-      if (res.statusCode == 200) {
-        const { data } = res
-        data.transaction = processTransaction(data)
-        data.greeting = getGreeting()
-        callback(data)
-      } else {
-        console.error(res.errMsg)
-      }
-    },
-    fail: res => {
-      wx.showToast({
-        title: '网络请求失败',
-        icon: 'error',
-      })
-    },
-    complete: res => {
-      wx.hideLoading()
-    }
-  })
-}
-
 Page({
   data: {
     user: {},
@@ -80,10 +52,10 @@ Page({
     greeting: '',
   },
   onLoad() {
-    getData(data => this.setData({
+    getData('/home', data => this.setData({
       user: data.user,
-      transaction: data.transaction,
-      greeting: data.greeting,
+      transaction: processTransaction(data),
+      greeting: getGreeting(),
     }))
   }
 })
