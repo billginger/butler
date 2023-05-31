@@ -37,6 +37,18 @@ Resources:
           Properties:
             Path: /home
             Method: get
+  MineFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/mine
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        Mine:
+          Type: Api
+          Properties:
+            Path: /mine
+            Method: get
   DependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
