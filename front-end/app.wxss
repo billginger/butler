@@ -1,8 +1,13 @@
+page {
+  background: #eee;
+}
 view {
   box-sizing: border-box;
 }
 .container {
-  padding: 16rpx;
+  margin: 16rpx 0;
+  padding: 32rpx 16rpx;
+  background: #fff;
   font-size: 32rpx;
   color: #333;
 }

@@ -1,12 +1,14 @@
-<view class="container" wx:if="{{user.nickname}}">
-  <view class="paragraph">
-    <text class="text-bold">{{user.nickname}}</text>
-    <text>，{{greeting}}！</text>
+<view wx:if="{{user.nickname}}">
+  <view class="container">
+    <view class="paragraph">
+      <text class="text-bold">{{user.nickname}}</text>
+      <text>，{{greeting}}！</text>
+    </view>
+    <view>
+      <text>欢迎使用如意小管家。您可以点击页面底部的“记账”选项卡来进行记账。</text>
+    </view>
   </view>
-  <view class="paragraph">
-    <text>欢迎使用如意小管家。您可以点击页面底部的“记账”选项卡来进行记账。</text>
-  </view>
-  <view wx:if="{{transaction}}">
+  <view class="container" wx:if="{{transaction}}">
     <view class="paragraph">
       <text>您上次记账的时间是 </text>
       <text class="text-bold">{{transaction.createDate}}</text>

@@ -1,3 +1,6 @@
+page {
+  background: #fff;
+}
 .container {
   padding: 200rpx 0;
   font-size: 28rpx;
