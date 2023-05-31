@@ -1,6 +1,6 @@
-import { getData } from '../../libs/get-data'
-import { doubleDigits, twoDecimals } from '../../utils/number'
-import { formatDate } from '../../utils/date'
+import { getData } from '~/libs/get-data'
+import { doubleDigits, twoDecimals } from '~/utils/number'
+import { formatDate } from '~/utils/date'
 
 const getDirection = transaction => (
   transaction.accountFrom && transaction.accountTo ? 3 : transaction.accountFrom ? 2 : 1

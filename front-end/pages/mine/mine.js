@@ -1,4 +1,4 @@
-import { getData } from '../../libs/get-data'
+import { getData } from '~/libs/get-data'
 
 Page({
   data: {

@@ -24,6 +24,9 @@
       "selectedIconPath": "images/mine-selected.png"
     }]
   },
+  "resolveAlias": {
+    "~/*": "/*"
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
