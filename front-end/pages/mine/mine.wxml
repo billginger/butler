@@ -1,18 +1,39 @@
-<view class="header">
+<view class="header" wx:if="{{user.nickname}}">
   <view class="user-info">
     <view class="user-avatar">
       <open-data type="userAvatarUrl" />
     </view>
     <view class="user-content">
       <view>
-        <open-data type="userNickName" />
+        <text>{{user.nickname}}</text>
       </view>
       <view class="user-role">
-        <text>账本管理员</text>
+        <text wx:if="{{user.withUser}}">账本协管员</text>
+        <text wx:else>账本管理员</text>
       </view>
     </view>
   </view>
   <view>
-    <image class="user-arrow" src="/images/right.png" />
+    <image class="icon" src="/images/right-white.png" />
+  </view>
+</view>
+<view class="list" wx:if="{{user.nickname && !user.withUser}}">
+  <view class="list-item">
+    <view class="list-item-icon">
+      <image class="icon-large" src="/images/bank-card.png" />
+    </view>
+    <view class="list-item-main">
+      <text>账户管理</text>
+      <image class="icon" src="/images/right.png" />
+    </view>
+  </view>
+  <view class="list-item">
+    <view class="list-item-icon">
+      <image class="icon-large" src="/images/classification.png" />
+    </view>
+    <view class="list-item-main">
+      <text>分类管理</text>
+      <image class="icon" src="/images/right.png" />
+    </view>
   </view>
 </view>

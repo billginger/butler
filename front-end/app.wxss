@@ -14,6 +14,14 @@ view {
 .paragraph {
   margin: 0 0 32rpx;
 }
+.icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+.icon-large {
+  width: 40rpx;
+  height: 40rpx;
+}
 .text-bold {
   font-weight: bold;
 }
