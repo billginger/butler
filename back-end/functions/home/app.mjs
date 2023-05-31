@@ -1,21 +1,5 @@
-import { ddbDocClient } from 'layer-ddb';
-import { getMilliseconds } from 'layer-date';
 import { QueryCommand } from '@aws-sdk/lib-dynamodb';
-
-const getUser = async (tokenCode, expirationDate) => {
-  const params = {
-    TableName: 'user',
-    IndexName: 'tokenIndex',
-    KeyConditionExpression: 'tokenCode = :c and loginDate > :d',
-    ExpressionAttributeValues: {
-      ':c': tokenCode,
-      ':d': expirationDate,
-    },
-  };
-  const data = await ddbDocClient.send(new QueryCommand(params));
-  const user = data.Items[0];
-  return user;
-};
+import { ddbDocClient, getUser } from 'layer-ddb';
 
 const getTransaction = async (createUser) => {
   const params = {
@@ -54,9 +38,7 @@ const getAccounts = async (transaction) => {
 
 export const handler = async (event) => {
   try {
-    const { token } = event.queryStringParameters;
-    const timestamp = getMilliseconds(event.requestContext.requestTimeEpoch) - 864e5;
-    const user = await getUser(token, timestamp);
+    const user = await getUser(event);
     const transaction = await getTransaction(user.openid);
     const accounts = await getAccounts(transaction);
     return {

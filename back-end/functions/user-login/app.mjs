@@ -1,7 +1,7 @@
 import https from 'https';
+import { ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from 'layer-ddb';
 import { getMilliseconds } from 'layer-date';
-import { ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 
 const getApp = async () => {
   const params = {
