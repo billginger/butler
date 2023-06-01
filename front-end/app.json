@@ -8,7 +8,8 @@
   "window":{
     "navigationBarTitleText": "如意小管家",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#333",

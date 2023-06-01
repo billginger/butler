@@ -5,11 +5,11 @@
         <text>昵称</text>
       </view>
       <view class="list-item-input">
-        <input value="{{user.nickname}}" maxlength="4" />
+        <input maxlength="8" model:value="{{nickname}}" />
       </view>
     </view>
   </view>
   <view>
-    <button size="default" type="primary">保存</button>
+    <button size="default" type="primary" bindtap="submit" loading="{{loading}}">提交</button>
   </view>
 </view>
