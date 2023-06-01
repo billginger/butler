@@ -21,7 +21,7 @@ const getData = (path, callback) => {
     },
     complete: res => {
       wx.hideLoading()
-    }
+    },
   })
 }
 

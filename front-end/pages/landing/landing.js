@@ -1,9 +1,9 @@
 Page({
   data: {
-    icon: ''
+    icon: '',
   },
   onLoad() {
     const { icon } = __wxConfig.accountInfo
     this.setData({ icon })
-  }
+  },
 })

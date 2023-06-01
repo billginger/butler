@@ -8,7 +8,7 @@ const userLogin = code => {
       if (res.statusCode == 200) {
         wx.setStorageSync('token', res.data.token)
         wx.switchTab({
-          url: '../index/index'
+          url: '../index/index',
         })
       } else {
         console.error(res.errMsg)
@@ -19,7 +19,7 @@ const userLogin = code => {
         title: '网络请求失败',
         icon: 'error',
       })
-    }
+    },
   })
 }
 
@@ -33,7 +33,7 @@ App({
         } else {
           console.error(res.errMsg)
         }
-      }
+      },
     })
-  }
+  },
 })
