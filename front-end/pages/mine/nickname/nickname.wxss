@@ -1,0 +1,18 @@
+.form {
+  margin: 16rpx 0;
+  background: #fff;
+  font-size: 32rpx;
+  color: #333;
+}
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 16rpx;
+  border-bottom: #eee solid 2rpx;
+}
+.form-item-label {
+  width: 160rpx;
+}
+.list-item-input {
+  flex: 1;
+}

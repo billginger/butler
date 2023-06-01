@@ -2,7 +2,8 @@
   "pages":[
     "pages/landing/landing",
     "pages/index/index",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/mine/nickname/nickname"
   ],
   "window":{
     "navigationBarTitleText": "如意小管家",
