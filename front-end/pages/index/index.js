@@ -52,10 +52,16 @@ Page({
     greeting: '',
   },
   onLoad() {
-    getData('/home', data => this.setData({
-      user: data.user,
-      transaction: processTransaction(data),
-      greeting: getGreeting(),
-    }))
-  }
+    getData('/home', data => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        user: data.user,
+        transaction: processTransaction(data),
+        greeting: getGreeting(),
+      })
+    })
+  },
+  onPullDownRefresh() {
+    this.onLoad()
+  },
 })

@@ -3,18 +3,23 @@ import { getData } from '~/libs/get-data'
 Page({
   data: {
     user: {},
-    icon: ''
+    icon: '',
   },
-  nickname() {
+  toNickname() {
     wx.navigateTo({
-      url: 'nickname/nickname'
+      url: 'nickname/nickname',
     })
   },
   onLoad() {
-    const { icon } = __wxConfig.accountInfo
-    getData('/mine', data => this.setData({
-      user: data.user,
-      icon,
-    }))
-  }
+    getData('/mine', data => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        user: data.user,
+        icon: __wxConfig.accountInfo.icon,
+      })
+    })
+  },
+  onPullDownRefresh() {
+    this.onLoad()
+  },
 })
