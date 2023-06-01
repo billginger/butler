@@ -1,13 +1,15 @@
-<view class="form" wx:if="{{user.nickname}}">
-  <view class="form-item">
-    <view class="form-item-label">
-      <text>昵称</text>
-    </view>
-    <view class="list-item-input">
-      <input value="{{user.nickname}}" maxlength="4" />
+<view wx:if="{{user.nickname}}">
+  <view class="form">
+    <view class="form-item">
+      <view class="form-item-label">
+        <text>昵称</text>
+      </view>
+      <view class="list-item-input">
+        <input value="{{user.nickname}}" maxlength="4" />
+      </view>
     </view>
   </view>
-</view>
-<view>
-  <button size="default" type="primary">保存</button>
+  <view>
+    <button size="default" type="primary">保存</button>
+  </view>
 </view>

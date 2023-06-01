@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   padding: 28rpx 16rpx;
-  border-bottom: #eee solid 2rpx;
+  border-bottom: 2rpx solid #eee;
 }
 .form-item-label {
   width: 160rpx;

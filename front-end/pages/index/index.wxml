@@ -1,6 +1,6 @@
 <view wx:if="{{user.nickname}}">
   <view class="container">
-    <view class="paragraph">
+    <view class="paragraph text-large">
       <text class="text-bold">{{user.nickname}}</text>
       <text>，{{greeting}}！</text>
     </view>

@@ -2,7 +2,8 @@ import { getData } from '~/libs/get-data'
 
 Page({
   data: {
-    user: {}
+    user: {},
+    icon: ''
   },
   nickname() {
     wx.navigateTo({
@@ -10,8 +11,10 @@ Page({
     })
   },
   onLoad() {
+    const { icon } = __wxConfig.accountInfo
     getData('/mine', data => this.setData({
       user: data.user,
+      icon,
     }))
   }
 })

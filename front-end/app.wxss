@@ -22,6 +22,9 @@ view {
   width: 40rpx;
   height: 40rpx;
 }
+.text-large {
+  font-size: 40rpx;
+}
 .text-bold {
   font-weight: bold;
 }
