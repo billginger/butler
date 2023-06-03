@@ -55,7 +55,7 @@ export const handler = async (event) => {
     console.error(err);
     return {
       statusCode: 500,
-      body: err.message,
+      body: JSON.stringify(err.message),
     };
   }
 };
