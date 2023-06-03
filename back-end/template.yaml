@@ -37,31 +37,24 @@ Resources:
           Properties:
             Path: /home
             Method: get
-  MineFunction:
+  MineUserFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: functions/mine
+      CodeUri: functions/mine-user
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        Mine:
+        ReadItem:
           Type: HttpApi
           Properties:
-            Path: /mine
+            Path: /user
             Method: get
-  MineNicknameFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: functions/mine-nickname
-      Policies:
-        - AmazonDynamoDBFullAccess
-      Events:
-        MineNickname:
+        UpdateItem:
           Type: HttpApi
           Properties:
-            Path: /mine-nickname
-            Method: post
-  AccountFunction:
+            Path: /user
+            Method: put
+  MineAccountFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: functions/mine-account
