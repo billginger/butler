@@ -36,7 +36,7 @@ export const handler = async (event) => {
     const data = await getData(user, event);
     return {
       statusCode: 200,
-      body: JSON.stringify({ data }),
+      body: JSON.stringify(data),
     };
   } catch (err) {
     console.error(err);
