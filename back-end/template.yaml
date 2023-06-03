@@ -61,6 +61,28 @@ Resources:
           Properties:
             Path: /mine-nickname
             Method: post
+  AccountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/mine-account
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        CreateItem:
+          Type: HttpApi
+          Properties:
+            Path: /accounts
+            Method: put
+        ReadItems:
+          Type: HttpApi
+          Properties:
+            Path: /accounts
+            Method: get
+        UpdateItem:
+          Type: HttpApi
+          Properties:
+            Path: /accounts/{id}
+            Method: put
   DependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
