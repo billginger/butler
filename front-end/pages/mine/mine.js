@@ -5,9 +5,9 @@ Page({
     user: {},
     icon: '',
   },
-  toNickname() {
+  toUser() {
     wx.navigateTo({
-      url: 'nickname/nickname',
+      url: 'user/user',
     })
   },
   onLoad() {
