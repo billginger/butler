@@ -17,18 +17,14 @@
 </view>
 <view class="list" wx:if="{{user.nickname && !user.withUser}}">
   <view class="list-item">
-    <view class="list-item-icon">
-      <image class="icon-large" src="/images/bank-card.png" />
-    </view>
+    <image class="icon-large" src="/images/bank-card.png" />
     <view class="list-item-main">
       <text>账户管理</text>
       <image class="icon" src="/images/right.png" />
     </view>
   </view>
   <view class="list-item">
-    <view class="list-item-icon">
-      <image class="icon-large" src="/images/classification.png" />
-    </view>
+    <image class="icon-large" src="/images/classification.png" />
     <view class="list-item-main">
       <text>分类管理</text>
       <image class="icon" src="/images/right.png" />

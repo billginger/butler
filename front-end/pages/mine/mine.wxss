@@ -30,18 +30,20 @@
 }
 .list-item {
   display: flex;
+  align-items: center;
 }
-.list-item-icon {
-  padding: 30rpx 32rpx 0;
+.icon-large {
+  padding: 0 32rpx;
 }
 .list-item-main {
   display: flex;
   flex: 1;
   justify-content: space-between;
   align-items: center;
-  padding: 28rpx 32rpx 28rpx 0;
+  padding: 28rpx 32rpx 26rpx 0;
   border-bottom: 2rpx solid #eee;
 }
 .list-item:last-child>.list-item-main {
+  padding: 28rpx 32rpx 28rpx 0;
   border-bottom: none;
 }
