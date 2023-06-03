@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 
 Globals:
   Function:
-    Timeout: 6
+    Timeout: 10
     Handler: app.handler
     Runtime: nodejs18.x
     Architectures:
@@ -21,7 +21,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       Events:
         UserLogin:
-          Type: Api
+          Type: HttpApi
           Properties:
             Path: /user-login
             Method: get
@@ -33,7 +33,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       Events:
         Home:
-          Type: Api
+          Type: HttpApi
           Properties:
             Path: /home
             Method: get
@@ -45,7 +45,7 @@ Resources:
         - AmazonDynamoDBFullAccess
       Events:
         Mine:
-          Type: Api
+          Type: HttpApi
           Properties:
             Path: /mine
             Method: get
@@ -56,8 +56,8 @@ Resources:
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        Mine:
-          Type: Api
+        MineNickname:
+          Type: HttpApi
           Properties:
             Path: /mine-nickname
             Method: post
@@ -178,7 +178,7 @@ Resources:
 
 Outputs:
   UserLoginApi:
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/user-login/"
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/user-login/"
   UserLoginFunction:
     Value: !GetAtt UserLoginFunction.Arn
   UserLoginFunctionIamRole:

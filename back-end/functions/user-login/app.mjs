@@ -34,7 +34,7 @@ const getSession = (app, code) => {
 
 const getToken = async (openid, requestContext) => {
   const tokenCode = requestContext.requestId.replace(/-/g, '');
-  const loginDate = getMilliseconds(requestContext.requestTimeEpoch);
+  const loginDate = getMilliseconds(requestContext.timeEpoch);
   const params = {
     TableName: 'user',
     Key: { openid },
