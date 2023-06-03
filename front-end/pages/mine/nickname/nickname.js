@@ -1,5 +1,5 @@
 import { getData } from '~/libs/get-data'
-import { postData } from '~/libs/post-data'
+import { putData } from '~/libs/put-data'
 
 Page({
   data: {
@@ -15,18 +15,18 @@ Page({
         icon: 'none',
       })
     }
-    const postBody = { nickname}
+    const data = { nickname }
     this.setData({
       loading: true,
     })
-    postData('/mine-nickname', postBody, () => {
+    putData('/user', data, () => {
       this.setData({
         loading: false,
       })
     })
   },
   onLoad() {
-    getData('/mine', data => {
+    getData('/user', data => {
       wx.stopPullDownRefresh()
       this.setData({
         user: data.user,

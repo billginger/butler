@@ -1,12 +1,12 @@
 import config from '~/config'
 
-const postData = (path, postBody, callback) => {
+const putData = (path, data, callback) => {
   const token = wx.getStorageSync('token')
   wx.showLoading()
   wx.request({
     url: config.apiUrl + path + '?token=' + token,
-    data: postBody,
-    method: 'POST',
+    data,
+    method: 'PUT',
     success: res => {
       if (res.statusCode == 200) {
         setTimeout(() => {
@@ -31,4 +31,4 @@ const postData = (path, postBody, callback) => {
   })
 }
 
-export { postData }
+export { putData }

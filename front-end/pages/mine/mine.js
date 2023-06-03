@@ -11,7 +11,7 @@ Page({
     })
   },
   onLoad() {
-    getData('/mine', data => {
+    getData('/user', data => {
       wx.stopPullDownRefresh()
       this.setData({
         user: data.user,
