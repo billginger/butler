@@ -111,8 +111,11 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "amount": {
     "N": "账户余额"
   },
-  "order": {
+  "sort": {
     "N": "排序优先级，数字越大排序越靠前"
+  },
+  "isHid": {
+    "N": "是否已隐藏：0 未隐藏，1 已隐藏"
   },
   "createUser": {
     "S": "账户的创建用户，系统填写"
@@ -120,11 +123,8 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "createDate": {
     "N": "账户的创建时间，系统填写"
   },
-  "isDeleted": {
-    "N": "是否已删除：0 未删除，1 已删除"
-  },
-  "updateLog": {
-    "S": "账户的更新记录，系统填写"
+  "history": {
+    "L": "当 label/currency/amount/isHid 更改时，保存历史记录，系统填写"
   }
 }
 ```
