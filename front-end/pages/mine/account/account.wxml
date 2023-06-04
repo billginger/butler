@@ -1,0 +1,29 @@
+<view>
+  <view class="list-header">
+    <view class="text-bold">
+      <text>账户管理</text>
+    </view>
+    <view>
+      <button size="mini" type="primary">添加</button>
+    </view>
+  </view>
+  <view class="list-main">
+    <view class="list-item" wx:for="{{accounts}}" wx:key="id">
+      <view>
+        <view>
+          <text>{{item.label}}</text>
+        </view>
+        <view class="text-small">
+          <text>{{item.amount}}</text>
+        </view>
+      </view>
+      <view>
+        <button size="mini">修改</button>
+      </view>
+    </view>
+  </view>
+  <view class="list-footer">
+    <switch checked="{{showHidden}}" bindchange="switchHidden"/>
+    <text>显示隐藏</text>
+  </view>
+</view>

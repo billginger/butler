@@ -5,7 +5,7 @@
       <view>
         <text>{{user.nickname}}</text>
       </view>
-      <view class="user-role">
+      <view class="text-small">
         <text wx:if="{{user.withUser}}">账本协管员</text>
         <text wx:else>账本管理员</text>
       </view>
@@ -16,7 +16,7 @@
   </view>
 </view>
 <view class="list" wx:if="{{user.nickname && !user.withUser}}">
-  <view class="list-item">
+  <view class="list-item" bindtap="toAccount">
     <image class="icon-large" src="/images/bank-card.png" />
     <view class="list-item-main">
       <text>账户管理</text>

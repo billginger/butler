@@ -17,10 +17,6 @@
 .user-content {
   padding-left: 16rpx;
 }
-.user-role {
-  font-size: 28rpx;
-  opacity: 0.8;
-}
 .list {
   margin: 16rpx 0;
   background: #fff;

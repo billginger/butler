@@ -6,6 +6,9 @@ page {
 view {
   box-sizing: border-box;
 }
+switch {
+  zoom: 0.8;
+}
 .container {
   margin: 16rpx 0;
   padding: 32rpx 16rpx;
@@ -24,6 +27,10 @@ view {
 }
 .text-large {
   font-size: 40rpx;
+}
+.text-small {
+  font-size: 28rpx;
+  opacity: 0.8;
 }
 .text-bold {
   font-weight: bold;

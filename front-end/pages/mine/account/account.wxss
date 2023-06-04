@@ -1,0 +1,18 @@
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 16rpx;
+}
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 16rpx;
+  padding: 16rpx;
+  background: #fff;
+}
+.list-footer {
+  display: flex;
+  align-items: center;
+  padding: 16rpx;
+}

@@ -10,6 +10,11 @@ Page({
       url: 'user/user',
     })
   },
+  toAccount() {
+    wx.navigateTo({
+      url: 'account/account',
+    })
+  },
   onLoad() {
     getData('/user', data => {
       wx.stopPullDownRefresh()
