@@ -1,5 +1,8 @@
-<view wx:if="{{user.nickname}}">
-  <view class="form">
+<view class="form" wx:if="{{user.nickname}}">
+  <view class="form-main">
+    <view class="form-title">
+      <text>修改个人信息</text>
+    </view>
     <view class="form-item">
       <view class="form-item-label">
         <text>昵称</text>
@@ -9,7 +12,7 @@
       </view>
     </view>
   </view>
-  <view>
-    <button size="default" type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
   </view>
 </view>
