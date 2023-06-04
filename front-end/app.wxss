@@ -1,4 +1,6 @@
 page {
+  font-size: 32rpx;
+  color: #333;
   background: #eee;
 }
 view {
@@ -8,8 +10,6 @@ view {
   margin: 16rpx 0;
   padding: 32rpx 16rpx;
   background: #fff;
-  font-size: 32rpx;
-  color: #333;
 }
 .paragraph {
   margin: 0 0 32rpx;

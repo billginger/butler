@@ -4,7 +4,6 @@
   align-items: flex-end;
   padding: 32rpx;
   background: #2aae67;
-  font-size: 32rpx;
   color: #fff;
 }
 .user-info {
@@ -25,8 +24,6 @@
 .list {
   margin: 16rpx 0;
   background: #fff;
-  font-size: 32rpx;
-  color: #333;
 }
 .list-item {
   display: flex;
