@@ -7,7 +7,7 @@
       <view class="form-item-label">
         <text>昵称</text>
       </view>
-      <view class="list-item-input">
+      <view class="form-item-input">
         <input maxlength="8" model:value="{{nickname}}" />
       </view>
     </view>

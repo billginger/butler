@@ -77,3 +77,37 @@ switch {
 .direction-3 {
   color: #808000;
 }
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.form-main {
+  flex: 1;
+  overflow: scroll;
+}
+.form-title {
+  padding: 16rpx;
+  font-weight: bold;
+}
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 16rpx;
+  background: #fff;
+  border-bottom: 2rpx solid #eee;
+}
+.form-item-label {
+  width: 160rpx;
+}
+.form-item-input {
+  flex: 1;
+}
+.form-footer {
+  padding: 24rpx 24rpx 48rpx;
+  background: #fff;
+  border-top: 2rpx solid #eee;
+}
+.form-footer>button {
+  width: 100%;
+}
