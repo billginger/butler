@@ -11,8 +11,14 @@ const processAccount = data => {
 
 Page({
   data: {
+    loaded: false,
     accounts: [],
-    showHidden: false
+    showHidden: false,
+  },
+  toAccountAdd() {
+    wx.navigateTo({
+      url: '../account-add/account-add',
+    })
   },
   switchHidden() {
     const showHidden = !this.data.showHidden
@@ -20,15 +26,12 @@ Page({
       showHidden,
     })
   },
-  onLoad() {
+  onShow() {
     getData('/accounts', data => {
-      wx.stopPullDownRefresh()
       this.setData({
+        loaded: true,
         accounts: processAccount(data),
       })
     })
-  },
-  onPullDownRefresh() {
-    this.onLoad()
   },
 })

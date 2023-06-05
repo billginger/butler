@@ -2,17 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24rpx 16rpx;
+  padding: 24rpx 16rpx 16rpx;
 }
 .list-item {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 16rpx;
   padding: 16rpx;
   background: #fff;
+  border-bottom: 2rpx solid #eee;
+}
+.list-item .icon {
+  margin-left: 8rpx;
+  vertical-align: middle;
 }
 .list-footer {
   display: flex;
   align-items: center;
-  padding: 16rpx;
+  padding: 24rpx 16rpx;
 }

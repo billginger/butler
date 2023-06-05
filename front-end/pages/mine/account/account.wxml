@@ -1,17 +1,21 @@
-<view>
+<view wx:if="{{loaded}}">
   <view class="list-header">
     <view class="text-bold">
       <text>账户管理</text>
     </view>
     <view>
-      <button size="mini" type="primary">添加</button>
+      <button size="mini" type="primary" bindtap="toAccountAdd">添加</button>
     </view>
   </view>
   <view class="list-main">
-    <view class="list-item" wx:for="{{accounts}}" wx:key="id">
+    <view class="list-item" wx:if="{{!accounts.length}}">
+      <text>没有符合条件的项目</text>
+    </view>
+    <view class="list-item" wx:for="{{accounts}}" wx:if="{{item.isHid <= showHidden}}" wx:key="id">
       <view>
         <view>
           <text>{{item.label}}</text>
+          <image class="icon" src="/images/no-eye.png" wx:if="{{item.isHid}}" />
         </view>
         <view class="text-small">
           <text>{{item.amount}}</text>

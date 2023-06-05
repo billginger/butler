@@ -108,6 +108,6 @@ switch {
   background: #fff;
   border-top: 2rpx solid #eee;
 }
-.form-footer>button {
+.form>.form-footer>button {
   width: 100%;
 }
