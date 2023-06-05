@@ -3,14 +3,7 @@
     <view class="form-title">
       <text>修改个人信息</text>
     </view>
-    <view class="form-item">
-      <view class="form-item-label">
-        <text>昵称</text>
-      </view>
-      <view class="form-item-input">
-        <input maxlength="8" model:value="{{nickname}}" />
-      </view>
-    </view>
+    <form-text label="昵称" maxlength="8" model:value="{{nickname}}" />
   </view>
   <view class="form-footer">
     <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
