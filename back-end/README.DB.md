@@ -124,7 +124,7 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
     "N": "账户的创建时间，系统填写"
   },
   "history": {
-    "L": "当 label/currency/amount/isHid 更改时，保存历史记录，系统填写"
+    "L": "当 label/currency/isHid 更改时，保存历史记录，系统填写"
   }
 }
 ```

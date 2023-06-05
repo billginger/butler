@@ -6,6 +6,7 @@ const createAccount = async (createUser, event) => {
   const { requestId, timeEpoch } = event.requestContext;
   const item = JSON.parse(event.body);
   item.id = requestId;
+  item.amount = 0;
   item.sort = 0;
   item.isHid = 0;
   item.createUser = createUser;
@@ -54,9 +55,6 @@ const getHistory = (oldItem, newItem, event) => {
   if (oldItem.currency != newItem.currency) {
     data.currency = oldItem.currency;
   }
-  if (oldItem.amount != newItem.amount) {
-    data.amount = oldItem.amount;
-  }
   if (oldItem.isHid != newItem.isHid) {
     data.isHid = oldItem.isHid;
   }
@@ -74,11 +72,10 @@ const updateAccount = async (createUser, event) => {
   const params = {
     TableName: 'account',
     Key: { id },
-    UpdateExpression: 'set label = :l, currency = :c, amount = :a, isHid = :i, history = :h',
+    UpdateExpression: 'set label = :l, currency = :c, isHid = :i, history = :h',
     ExpressionAttributeValues: {
       ':l': item.label,
       ':c': item.currency,
-      ':a': item.amount,
       ':i': item.isHid,
       ':h': history,
     },
