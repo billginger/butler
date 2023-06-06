@@ -76,6 +76,28 @@ Resources:
           Properties:
             Path: /accounts/{id}
             Method: put
+  MineCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/mine-category
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        CreateItem:
+          Type: HttpApi
+          Properties:
+            Path: /categories
+            Method: put
+        ReadItems:
+          Type: HttpApi
+          Properties:
+            Path: /categories
+            Method: get
+        UpdateItem:
+          Type: HttpApi
+          Properties:
+            Path: /categories/{id}
+            Method: put
   DependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
