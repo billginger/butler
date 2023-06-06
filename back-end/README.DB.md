@@ -142,8 +142,11 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "label": {
     "S": "显示的文本"
   },
-  "order": {
+  "sort": {
     "N": "排序优先级，数字越大排序越靠前"
+  },
+  "isHid": {
+    "BOOL": "是否已隐藏"
   },
   "createUser": {
     "S": "分类的创建用户，系统填写"
@@ -151,11 +154,8 @@ Butler 使用 DynamoDB 来存储数据，主要 Table 如下：
   "createDate": {
     "N": "分类的创建时间，系统填写"
   },
-  "isDeleted": {
-    "N": "是否已删除：0 未删除，1 已删除"
-  },
-  "updateLog": {
-    "S": "分类的更新记录，系统填写"
+  "history": {
+    "L": "当 direction/label/isHid 更改时，保存历史记录，系统填写"
   }
 }
 ```
