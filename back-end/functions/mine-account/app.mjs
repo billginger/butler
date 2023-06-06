@@ -2,10 +2,11 @@ import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from '@aws-sdk/li
 import { ddbDocClient, getUser } from 'layer-ddb';
 import { getMilliseconds } from 'layer-date';
 
-const createAccount = async (createUser, event) => {
-  const { requestId, timeEpoch } = event.requestContext;
+const createAccount = async (createUser, event, context) => {
+  const { awsRequestId } = context;
+  const { timeEpoch } = event.requestContext;
   const item = JSON.parse(event.body);
-  item.id = requestId;
+  item.id = awsRequestId;
   item.amount = 0;
   item.sort = 0;
   item.isHid = 0;
@@ -16,7 +17,7 @@ const createAccount = async (createUser, event) => {
     Item: item,
   };
   await ddbDocClient.send(new PutCommand(params));
-  return { id: requestId };
+  return { id: awsRequestId };
 };
 
 const readAccounts = async (createUser) => {
@@ -84,19 +85,19 @@ const updateAccount = async (createUser, event) => {
   return { id };
 };
 
-const getData = (user, event) => {
+const getData = (user, event, context) => {
   if (user.withUser) throw new Error('No permission!');
   switch (event.routeKey) {
-    case 'PUT /accounts': return createAccount(user.openid, event);
+    case 'PUT /accounts': return createAccount(user.openid, event, context);
     case 'GET /accounts': return readAccounts(user.openid);
     case 'PUT /accounts/{id}': return updateAccount(user.openid, event);
   }
 };
 
-export const handler = async (event) => {
+export const handler = async (event, context) => {
   try {
     const user = await getUser(event);
-    const data = await getData(user, event);
+    const data = await getData(user, event, context);
     return {
       statusCode: 200,
       body: JSON.stringify(data),
