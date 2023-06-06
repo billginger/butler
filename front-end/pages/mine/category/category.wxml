@@ -1,0 +1,54 @@
+<view wx:if="{{loaded}}">
+  <view class="list-header">
+    <view class="text-bold">
+      <text>分类管理</text>
+    </view>
+    <view>
+      <button size="mini" type="primary" bindtap="toCategoryAdd">添加</button>
+    </view>
+  </view>
+  <view class="list-filter">
+    <view>
+      <text>按交易类型查看：</text>
+    </view>
+    <radio-group bindchange="changeDirection">
+      <label class="radio-label">
+        <radio value="1" checked="true" />
+        <text>收入</text>
+      </label>
+      <label class="radio-label">
+        <radio value="2" />
+        <text>支出</text>
+      </label>
+      <label class="radio-label">
+        <radio value="3" />
+        <text>转账</text>
+      </label>
+    </radio-group>
+  </view>
+  <view class="list-main">
+    <view
+      class="list-item"
+      wx:for="{{categories}}"
+      wx:if="{{item.isHid <= showHid && item.direction == showDirection}}"
+      wx:key="id"
+    >
+      <view>
+        <text>{{item.label}}</text>
+        <image class="icon" src="/images/no-eye.png" wx:if="{{item.isHid}}" />
+      </view>
+      <view>
+        <button size="mini" data-item="{{item}}" bindtap="toCategoryModify">修改</button>
+      </view>
+    </view>
+    <view class="list-none">
+      <text class="text-small">没有符合条件的项目</text>
+    </view>
+  </view>
+  <view class="list-footer">
+    <label class="switch-label">
+      <switch checked="{{showHid}}" bindchange="switchHid" />
+      <text>显示隐藏</text>
+    </label>
+  </view>
+</view>

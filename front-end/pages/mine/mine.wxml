@@ -23,7 +23,7 @@
       <image class="icon" src="/images/right.png" />
     </view>
   </view>
-  <view class="list-item">
+  <view class="list-item" bindtap="toCategory">
     <image class="icon-large" src="/images/classification.png" />
     <view class="list-item-main">
       <text>分类管理</text>

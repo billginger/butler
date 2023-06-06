@@ -6,7 +6,8 @@
     "pages/mine/user/user",
     "pages/mine/account/account",
     "pages/mine/account-add/account-add",
-    "pages/mine/account-modify/account-modify"
+    "pages/mine/account-modify/account-modify",
+    "pages/mine/category/category"
   ],
   "window":{
     "navigationBarTitleText": "如意小管家",

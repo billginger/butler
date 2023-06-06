@@ -15,6 +15,11 @@ Page({
       url: 'account/account',
     })
   },
+  toCategory() {
+    wx.navigateTo({
+      url: 'category/category',
+    })
+  },
   onLoad() {
     getData('/user', data => {
       wx.stopPullDownRefresh()
