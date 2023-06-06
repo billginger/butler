@@ -2,7 +2,7 @@ import { getData } from '~/libs/get-data'
 import { twoDecimals } from '~/utils/number'
 
 const processAccount = data => {
-  const accounts = data.sort((a, b) => b.sort - a.sort).map(item => {
+  const accounts = data.sort((a, b) => a.sort - b.sort).map(item => {
     item.amount = item.currency + twoDecimals(item.amount)
     return item
   })
