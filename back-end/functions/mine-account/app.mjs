@@ -9,7 +9,7 @@ const createAccount = async (createUser, event, context) => {
   item.id = awsRequestId;
   item.amount = 0;
   item.sort = 0;
-  item.isHid = 0;
+  item.isHid = false;
   item.createUser = createUser;
   item.createDate = getMilliseconds(timeEpoch);
   const params = {
