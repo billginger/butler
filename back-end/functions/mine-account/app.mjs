@@ -31,8 +31,7 @@ const readAccounts = async (createUser) => {
     ProjectionExpression: 'id, label, currency, amount, sort, isHid',
   };
   const data = await ddbDocClient.send(new QueryCommand(params));
-  const accounts = data.Items;
-  return accounts;
+  return data.Items;
 };
 
 const getAccount = async (id, createUser) => {
