@@ -11,7 +11,7 @@
     <view class="list-item" wx:if="{{!accounts.length}}">
       <text>没有符合条件的项目</text>
     </view>
-    <view class="list-item" wx:for="{{accounts}}" wx:if="{{item.isHid <= showHidden}}" wx:key="id">
+    <view class="list-item" wx:for="{{accounts}}" wx:if="{{item.isHid <= showHid}}" wx:key="id">
       <view>
         <view>
           <text>{{item.label}}</text>
@@ -22,12 +22,14 @@
         </view>
       </view>
       <view>
-        <button size="mini">修改</button>
+        <button size="mini" data-item="{{item}}" bindtap="toAccountModify">修改</button>
       </view>
     </view>
   </view>
   <view class="list-footer">
-    <switch checked="{{showHidden}}" bindchange="switchHidden"/>
-    <text>显示隐藏</text>
+    <label>
+      <switch checked="{{showHid}}" bindchange="switchHid" />
+      <text class="list-footer-label">显示隐藏</text>
+    </label>
   </view>
 </view>

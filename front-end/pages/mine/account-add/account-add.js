@@ -20,10 +20,10 @@ Page({
         icon: 'none',
       })
     }
-    const data = { label, currency }
     this.setData({
       loading: true,
     })
+    const data = { label, currency }
     putData('/accounts', data, () => {
       wx.navigateBack()
     })

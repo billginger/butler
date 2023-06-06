@@ -1,0 +1,20 @@
+<view class="form">
+  <view class="form-main">
+    <view class="form-title">
+      <text>修改账户</text>
+    </view>
+    <form-text model:value="{{label}}" />
+    <form-text label="币种" maxlength="8" model:value="{{currency}}" />
+    <view class="form-item">
+      <view class="form-item-label">
+        <text>隐藏</text>
+      </view>
+      <view class="form-item-input">
+        <switch checked="{{isHid}}" bindchange="switchHid" />
+      </view>
+    </view>
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>

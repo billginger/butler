@@ -13,18 +13,23 @@ Page({
   data: {
     loaded: false,
     accounts: [],
-    showHidden: false,
+    showHid: false,
   },
   toAccountAdd() {
     wx.navigateTo({
       url: '../account-add/account-add',
     })
   },
-  switchHidden() {
-    const showHidden = !this.data.showHidden
-    this.setData({
-      showHidden,
+  toAccountModify(e) {
+    const { item } = e.currentTarget.dataset
+    wx.setStorageSync('cacheItem', item)
+    wx.navigateTo({
+      url: '../account-modify/account-modify',
     })
+  },
+  switchHid() {
+    const showHid = !this.data.showHid
+    this.setData({ showHid })
   },
   onShow() {
     getData('/accounts', data => {

@@ -15,10 +15,10 @@ Page({
         icon: 'none',
       })
     }
-    const data = { nickname }
     this.setData({
       loading: true,
     })
+    const data = { nickname }
     putData('/user', data, () => {
       this.setData({
         loading: false,

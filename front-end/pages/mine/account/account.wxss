@@ -16,7 +16,8 @@
   vertical-align: middle;
 }
 .list-footer {
-  display: flex;
-  align-items: center;
   padding: 24rpx 16rpx;
+}
+.list-footer-label {
+  vertical-align: bottom;
 }
