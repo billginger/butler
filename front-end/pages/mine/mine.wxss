@@ -22,8 +22,8 @@
   background: #fff;
 }
 .list-item {
-  display: flex;
-  align-items: center;
+  padding: 0;
+  border: none;
 }
 .icon-large {
   padding: 0 32rpx;
