@@ -6,6 +6,9 @@ page {
 view {
   box-sizing: border-box;
 }
+button {
+  vertical-align: top;
+}
 radio,
 switch {
   zoom: 0.75;
@@ -13,8 +16,7 @@ switch {
 .radio-label {
   margin: 0 16rpx 0 0;
 }
-.radio-label text,
-.switch-label text {
+.radio-label text {
   vertical-align: middle;
 }
 .container {
@@ -85,6 +87,11 @@ switch {
 .direction-3 {
   color: #808000;
 }
+.page-title {
+  padding: 24rpx 16rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
 .form {
   height: 100%;
   display: flex;
@@ -93,10 +100,6 @@ switch {
 .form-main {
   flex: 1;
   overflow: scroll;
-}
-.form-title {
-  padding: 16rpx;
-  font-weight: bold;
 }
 .form-item {
   display: flex;
@@ -119,16 +122,24 @@ switch {
 .form>.form-footer>button {
   width: 100%;
 }
-.list-header {
+.list-action {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24rpx 16rpx 16rpx;
+  padding: 16rpx;
+  background: #fff;
+}
+.list-action text {
+  vertical-align: middle;
 }
 .list-filter {
   display: flex;
   align-items: center;
-  padding: 0 16rpx 24rpx;
+  padding: 8rpx 16rpx 24rpx;
+  background: #fff;
+}
+.list-main {
+  margin: 16rpx 0;
 }
 .list-item {
   display: flex;
@@ -142,9 +153,6 @@ switch {
   margin-left: 8rpx;
   vertical-align: middle;
 }
-.list-item button {
-  vertical-align: top;
-}
 .list-none {
   padding: 24rpx 16rpx;
   background: #fff;
@@ -154,5 +162,6 @@ switch {
   display: none;
 }
 .list-footer {
-  padding: 24rpx 16rpx;
+  padding: 16rpx;
+  background: #fff;
 }

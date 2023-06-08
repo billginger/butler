@@ -1,6 +1,6 @@
 <view class="form">
   <view class="form-main">
-    <view class="form-title">
+    <view class="page-title">
       <text>添加账户</text>
     </view>
     <form-text model:value="{{label}}" />

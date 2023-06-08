@@ -1,6 +1,6 @@
 <view class="form" wx:if="{{user.nickname}}">
   <view class="form-main">
-    <view class="form-title">
+    <view class="page-title">
       <text>修改个人信息</text>
     </view>
     <form-text label="昵称" maxlength="8" model:value="{{nickname}}" />

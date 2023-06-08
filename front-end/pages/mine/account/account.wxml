@@ -1,7 +1,11 @@
 <view wx:if="{{loaded}}">
-  <view class="list-header">
-    <view class="text-bold">
-      <text>账户管理</text>
+  <view class="page-title">
+    <text>账户管理</text>
+  </view>
+  <view class="list-action">
+    <view>
+      <text>显示隐藏：</text>
+      <switch checked="{{showHid}}" bindchange="switchHid" />
     </view>
     <view>
       <button size="mini" type="primary" bindtap="toAccountAdd">添加</button>
@@ -25,11 +29,5 @@
     <view class="list-none">
       <text class="text-small">没有符合条件的项目</text>
     </view>
-  </view>
-  <view class="list-footer">
-    <label class="switch-label">
-      <switch checked="{{showHid}}" bindchange="switchHid" />
-      <text>显示隐藏</text>
-    </label>
   </view>
 </view>
