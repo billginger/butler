@@ -8,10 +8,6 @@ Page({
     isHid: false,
     loading: false,
   },
-  switchHid() {
-    const isHid = !this.data.isHid
-    this.setData({ isHid })
-  },
   submit() {
     const { id, label, currency, isHid } = this.data
     if (!label.length) {
