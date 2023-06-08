@@ -1,0 +1,13 @@
+<view class="form">
+  <view class="form-main">
+    <view class="page-title">
+      <text>修改分类</text>
+    </view>
+    <form-radio model:value="{{direction}}" />
+    <form-text model:value="{{label}}" />
+    <form-switch model:value="{{isHid}}" />
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>
