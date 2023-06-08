@@ -6,10 +6,6 @@ Page({
     label: '',
     loading: false,
   },
-  changeDirection(e) {
-    const direction = e.detail.value * 1
-    this.setData({ direction })
-  },
   submit() {
     const { direction, label } = this.data
     if (!label.length) {

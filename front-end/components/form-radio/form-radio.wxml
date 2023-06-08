@@ -1,0 +1,13 @@
+<view class="form-item">
+  <view class="form-item-label">
+    <text>{{label}}</text>
+  </view>
+  <view class="form-item-input">
+    <radio-group bindchange="onChange">
+      <label class="radio-label" wx:for="{{options}}" wx:key="value">
+        <radio value="{{item.value}}" checked="{{value == item.value}}" />
+        <text>{{item.label}}</text>
+      </label>
+    </radio-group>
+  </view>
+</view>
