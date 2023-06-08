@@ -4,7 +4,7 @@ Page({
   data: {
     loaded: false,
     categories: [],
-    showDirection: '1',
+    showDirection: 1,
     showHid: false,
   },
   toCategoryAdd() {
@@ -20,7 +20,7 @@ Page({
     })
   },
   changeDirection(e) {
-    const showDirection = e.detail.value
+    const showDirection = e.detail.value * 1
     this.setData({ showDirection })
   },
   switchHid() {
