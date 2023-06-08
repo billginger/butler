@@ -19,7 +19,7 @@
           <image class="icon" src="/images/no-eye.png" wx:if="{{item.isHid}}" />
         </view>
         <view class="text-small">
-          <text>{{item.amount}}</text>
+          <text>{{item.balance}}</text>
         </view>
       </view>
       <view>
@@ -29,5 +29,11 @@
     <view class="list-none">
       <text class="text-small">没有符合条件的项目</text>
     </view>
+  </view>
+  <view class="list-footer">
+    <text>合计：</text>
+    <block wx:for="{{total}}" wx:key="*this">
+      <text class="total-item">{{item}}</text>
+    </block>
   </view>
 </view>
