@@ -1,0 +1,32 @@
+<view class="form">
+  <view class="form-main">
+    <view class="page-title">
+      <text>添加分类</text>
+    </view>
+    <view class="form-item">
+      <view class="form-item-label">
+        <text>交易类型</text>
+      </view>
+      <view class="form-item-input">
+        <radio-group bindchange="changeDirection">
+          <label class="radio-label">
+            <radio value="1" checked="true" />
+            <text>收入</text>
+          </label>
+          <label class="radio-label">
+            <radio value="2" />
+            <text>支出</text>
+          </label>
+          <label class="radio-label">
+            <radio value="3" />
+            <text>转账</text>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <form-text model:value="{{label}}" />
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>
