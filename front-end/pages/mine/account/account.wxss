@@ -1,3 +1,4 @@
+.add-button,
 .total-item {
   margin: 0 24rpx 0 0;
 }

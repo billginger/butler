@@ -45,6 +45,13 @@ Page({
       url: '../account-modify/account-modify',
     })
   },
+  toAccountSort() {
+    const { accounts } = this.data
+    wx.setStorageSync('cacheData', accounts)
+    wx.navigateTo({
+      url: '../account-sort/account-sort',
+    })
+  },
   switchHid() {
     const showHid = !this.data.showHid
     const total = getTotal(this.data.accounts, showHid)

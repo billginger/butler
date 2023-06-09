@@ -1,0 +1,36 @@
+<view class="form">
+  <view class="form-main">
+    <view class="page-title">
+      <text>账户排序</text>
+    </view>
+    <movable-area style="width: 100%; height: {{areaHeight}}px;">
+      <movable-view
+        class="drag-item"
+        direction="vertical"
+        wx:for="{{accounts}}"
+        wx:key="id"
+        y="{{item.y}}"
+        style="z-index: {{index == currentIndex ? 1 : 0}}"
+        data-index="{{index}}"
+        bind:change="drag"
+        bind:touchend="drop"
+      >
+        <view class="drag-text">
+          <view>
+            <text>{{item.label}}</text>
+            <image class="icon" src="/images/no-eye.png" wx:if="{{item.isHid}}" />
+          </view>
+          <view class="text-small">
+            <text>{{item.balance}}</text>
+          </view>
+        </view>
+        <view class="drag-icon">
+          <view />
+        </view>
+      </movable-view>
+    </movable-area>
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>

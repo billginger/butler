@@ -8,7 +8,8 @@
       <switch checked="{{showHid}}" bindchange="switchHid" />
     </view>
     <view>
-      <button size="mini" type="primary" bindtap="toAccountAdd">添加</button>
+      <button class="add-button" size="mini" type="primary" bindtap="toAccountAdd">添加</button>
+      <button size="mini" bindtap="toAccountSort">排序</button>
     </view>
   </view>
   <view class="list-main">

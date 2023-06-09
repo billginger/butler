@@ -7,6 +7,7 @@
     "pages/mine/account/account",
     "pages/mine/account-add/account-add",
     "pages/mine/account-modify/account-modify",
+    "pages/mine/account-sort/account-sort",
     "pages/mine/category/category",
     "pages/mine/category-add/category-add",
     "pages/mine/category-modify/category-modify"
