@@ -40,7 +40,7 @@ Page({
   },
   toAccountModify(e) {
     const { item } = e.currentTarget.dataset
-    wx.setStorageSync('cacheItem', item)
+    wx.setStorageSync('cacheData', item)
     wx.navigateTo({
       url: '../account-modify/account-modify',
     })

@@ -28,8 +28,8 @@ Page({
     })
   },
   onLoad() {
-    const cacheItem = wx.getStorageSync('cacheItem')
-    const { id, direction, label, isHid } = cacheItem
+    const cacheData = wx.getStorageSync('cacheData')
+    const { id, direction, label, isHid } = cacheData
     this.setData({ id, direction, label, isHid })
   },
 })

@@ -14,7 +14,7 @@ Page({
   },
   toCategoryModify(e) {
     const { item } = e.currentTarget.dataset
-    wx.setStorageSync('cacheItem', item)
+    wx.setStorageSync('cacheData', item)
     wx.navigateTo({
       url: '../category-modify/category-modify',
     })
