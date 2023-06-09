@@ -15,6 +15,10 @@ page {
   padding: 16rpx;
   background: #fff;
 }
+.drag-text .icon {
+  margin-left: 8rpx;
+  vertical-align: middle;
+}
 .drag-icon {
   padding: 0 20rpx 0;
 }
