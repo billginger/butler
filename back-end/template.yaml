@@ -98,6 +98,18 @@ Resources:
           Properties:
             Path: /categories/{id}
             Method: put
+  MineSortFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/mine-sort
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        SortItems:
+          Type: HttpApi
+          Properties:
+            Path: /sort/{table}
+            Method: put
   DependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
