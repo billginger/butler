@@ -1,3 +1,5 @@
+import { putData } from '~/libs/put-data'
+
 const itemHeight = 62
 
 const getAccounts = data => (
@@ -26,6 +28,18 @@ Page({
     accounts.sort((a, b) => a.y - b.y)
     this.setData({
       accounts: getAccounts(accounts)
+    })
+  },
+  submit() {
+    const { accounts } = this.data
+    this.setData({
+      loading: true,
+    })
+    const data = accounts.map(item => item.id)
+    putData('/sort/account', data, () => {
+      this.setData({
+        loading: false,
+      })
     })
   },
   onLoad() {
