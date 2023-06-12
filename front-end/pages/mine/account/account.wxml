@@ -8,8 +8,8 @@
       <switch checked="{{showHid}}" bindchange="switchHid" />
     </view>
     <view>
-      <button class="add-button" size="mini" type="primary" bindtap="toAccountAdd">添加</button>
-      <button size="mini" bindtap="toAccountSort">排序</button>
+      <button size="mini" type="primary" bindtap="toAccountAdd">添加</button>
+      <button class="sort-button" size="mini" bindtap="toAccountSort" wx:if="{{accounts.length > 1}}">排序</button>
     </view>
   </view>
   <view class="list-main">
@@ -34,7 +34,7 @@
   <view class="list-footer">
     <text>合计：</text>
     <block wx:for="{{total}}" wx:key="*this">
-      <text class="total-item">{{item}}</text>
+      <text>{{item}}</text>
     </block>
   </view>
 </view>

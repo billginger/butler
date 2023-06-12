@@ -1,4 +1,4 @@
-.add-button,
-.total-item {
-  margin: 0 24rpx 0 0;
+.sort-button,
+.list-footer>text:nth-child(n+3) {
+  margin-left: 24rpx;
 }
