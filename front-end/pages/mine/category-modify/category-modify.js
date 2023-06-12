@@ -8,6 +8,11 @@ Page({
     isHid: false,
     loading: false,
   },
+  onLoad() {
+    const cacheData = wx.getStorageSync('cacheData')
+    const { id, direction, label, isHid } = cacheData
+    this.setData({ id, direction, label, isHid })
+  },
   submit() {
     const { id, direction, label, isHid } = this.data
     if (!label.length) {
@@ -26,10 +31,5 @@ Page({
         loading: false,
       })
     })
-  },
-  onLoad() {
-    const cacheData = wx.getStorageSync('cacheData')
-    const { id, direction, label, isHid } = cacheData
-    this.setData({ id, direction, label, isHid })
   },
 })

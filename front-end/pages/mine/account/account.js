@@ -33,6 +33,20 @@ Page({
     showHid: false,
     total: [],
   },
+  onShow() {
+    getData('/accounts', data => {
+      this.setData({
+        loaded: true,
+        accounts: getAccounts(data),
+        total: getTotal(data, this.data.showHid),
+      })
+    })
+  },
+  switchHid() {
+    const showHid = !this.data.showHid
+    const total = getTotal(this.data.accounts, showHid)
+    this.setData({ showHid, total })
+  },
   toAccountAdd() {
     wx.navigateTo({
       url: '../account-add/account-add',
@@ -50,20 +64,6 @@ Page({
     wx.setStorageSync('cacheData', accounts)
     wx.navigateTo({
       url: '../account-sort/account-sort',
-    })
-  },
-  switchHid() {
-    const showHid = !this.data.showHid
-    const total = getTotal(this.data.accounts, showHid)
-    this.setData({ showHid, total })
-  },
-  onShow() {
-    getData('/accounts', data => {
-      this.setData({
-        loaded: true,
-        accounts: getAccounts(data),
-        total: getTotal(data, this.data.showHid),
-      })
     })
   },
 })

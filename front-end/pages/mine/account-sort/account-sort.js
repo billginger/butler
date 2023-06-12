@@ -17,6 +17,12 @@ Page({
     endY: 0,
     loading: false,
   },
+  onLoad() {
+    const data = wx.getStorageSync('cacheData')
+    const accounts = getAccounts(data)
+    const areaHeight = accounts.length * itemHeight + 6
+    this.setData({ accounts, areaHeight })
+  },
   drag(e) {
     const currentIndex = e.currentTarget.dataset.index
     const endY = e.detail.y
@@ -41,11 +47,5 @@ Page({
         loading: false,
       })
     })
-  },
-  onLoad() {
-    const data = wx.getStorageSync('cacheData')
-    const accounts = getAccounts(data)
-    const areaHeight = accounts.length * itemHeight + 6
-    this.setData({ accounts, areaHeight })
   },
 })

@@ -7,6 +7,18 @@ Page({
     nickname: '',
     loading: false,
   },
+  onLoad() {
+    getData('/user', data => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        user: data.user,
+        nickname: data.user.nickname,
+      })
+    })
+  },
+  onPullDownRefresh() {
+    this.onLoad()
+  },
   submit() {
     const { nickname } = this.data
     if (!nickname.length) {
@@ -24,17 +36,5 @@ Page({
         loading: false,
       })
     })
-  },
-  onLoad() {
-    getData('/user', data => {
-      wx.stopPullDownRefresh()
-      this.setData({
-        user: data.user,
-        nickname: data.user.nickname,
-      })
-    })
-  },
-  onPullDownRefresh() {
-    this.onLoad()
   },
 })
