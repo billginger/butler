@@ -1,0 +1,11 @@
+<view class="form">
+  <view class="form-main">
+    <view class="page-title">
+      <text>分类排序</text>
+    </view>
+    <sort id="sort" />
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>

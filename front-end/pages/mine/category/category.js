@@ -4,15 +4,17 @@ Page({
   data: {
     loaded: false,
     categories: [],
-    showDirection: 1,
+    categoriesDirection: [],
     showHid: false,
+    showDirection: 1,
   },
   onShow() {
     getData('/categories', data => {
-      this.setData({
-        loaded: true,
-        categories: data.sort((a, b) => a.sort - b.sort),
-      })
+      const loaded = true
+      const categories = data.sort((a, b) => a.sort - b.sort)
+      const { showDirection } = this.data
+      const categoriesDirection = categories.filter(item => item.direction == showDirection)
+      this.setData({ loaded, categories, categoriesDirection })
     })
   },
   switchHid() {
@@ -21,7 +23,8 @@ Page({
   },
   changeDirection(e) {
     const showDirection = e.detail.value * 1
-    this.setData({ showDirection })
+    const categoriesDirection = this.data.categories.filter(item => item.direction == showDirection)
+    this.setData({ categoriesDirection, showDirection })
   },
   toCategoryAdd() {
     wx.navigateTo({
@@ -33,6 +36,13 @@ Page({
     wx.setStorageSync('cacheData', item)
     wx.navigateTo({
       url: '../category-modify/category-modify',
+    })
+  },
+  toCategorySort() {
+    const { categoriesDirection } = this.data
+    wx.setStorageSync('cacheData', categoriesDirection)
+    wx.navigateTo({
+      url: '../category-sort/category-sort',
     })
   },
 })

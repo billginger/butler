@@ -18,7 +18,7 @@ Component({
   },
   ready: function() {
     const data = wx.getStorageSync('cacheData')
-    const itemHeight = data[0].balance ? 62 : 49
+    const itemHeight = data[0].balance ? 62 : 41
     const areaHeight = data.length * itemHeight + 6
     const items = getItems(data, itemHeight)
     this.setData({ itemHeight, areaHeight, items })

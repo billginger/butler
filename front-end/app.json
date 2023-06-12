@@ -10,7 +10,8 @@
     "pages/mine/account-sort/account-sort",
     "pages/mine/category/category",
     "pages/mine/category-add/category-add",
-    "pages/mine/category-modify/category-modify"
+    "pages/mine/category-modify/category-modify",
+    "pages/mine/category-sort/category-sort"
   ],
   "window":{
     "navigationBarTitleText": "如意小管家",

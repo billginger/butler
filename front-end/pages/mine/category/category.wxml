@@ -9,34 +9,37 @@
     </view>
     <view>
       <button size="mini" type="primary" bindtap="toCategoryAdd">添加</button>
+      <button
+        class="sort-button"
+        size="mini"
+        bindtap="toCategorySort"
+        wx:if="{{categoriesDirection.length > 1}}"
+      >
+        排序
+      </button>
     </view>
   </view>
   <view class="list-filter">
     <view>
-      <text>按交易类型查看：</text>
+      <text>交易类型：</text>
     </view>
     <radio-group bindchange="changeDirection">
       <label class="radio-label">
-        <radio value="1" checked="true" />
+        <radio value="1" checked="{{showDirection == 1}}" />
         <text>收入</text>
       </label>
       <label class="radio-label">
-        <radio value="2" />
+        <radio value="2" checked="{{showDirection == 2}}" />
         <text>支出</text>
       </label>
       <label class="radio-label">
-        <radio value="3" />
+        <radio value="3" checked="{{showDirection == 3}}" />
         <text>转账</text>
       </label>
     </radio-group>
   </view>
   <view class="list-main">
-    <view
-      class="list-item"
-      wx:for="{{categories}}"
-      wx:if="{{item.isHid <= showHid && item.direction == showDirection}}"
-      wx:key="id"
-    >
+    <view class="list-item" wx:for="{{categoriesDirection}}" wx:if="{{item.isHid <= showHid}}" wx:key="id">
       <view>
         <text>{{item.label}}</text>
         <image class="icon" src="/images/no-eye.png" wx:if="{{item.isHid}}" />
