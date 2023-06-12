@@ -15,8 +15,7 @@
   "window":{
     "navigationBarTitleText": "如意小管家",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#333",

@@ -1,7 +1,6 @@
 {
   "navigationBarBackgroundColor": "#2aae67",
   "navigationBarTextStyle": "white",
-  "enablePullDownRefresh": false,
   "usingComponents": {
     "form-text": "/components/form-text/form-text",
     "form-radio": "/components/form-radio/form-radio",
