@@ -1,0 +1,26 @@
+<movable-area style="width: 100%; height: {{areaHeight}}px;">
+  <movable-view
+    class="drag-item"
+    direction="vertical"
+    wx:for="{{items}}"
+    wx:key="id"
+    y="{{item.y}}"
+    style="z-index: {{index == currentIndex ? 1 : 0}}"
+    data-index="{{index}}"
+    bind:change="drag"
+    bind:touchend="drop"
+  >
+    <view class="drag-text">
+      <view>
+        <text>{{item.label}}</text>
+        <image class="icon" src="/images/no-eye.png" wx:if="{{item.isHid}}" />
+      </view>
+      <view class="text-small" wx:if="{{item.balance}}">
+        <text>{{item.balance}}</text>
+      </view>
+    </view>
+    <view class="drag-icon">
+      <view />
+    </view>
+  </movable-view>
+</movable-area>
