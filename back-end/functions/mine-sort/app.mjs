@@ -14,6 +14,7 @@ const updateSort = async (user, event) => {
       Key: {
         id: items[index],
       },
+      ConditionExpression: 'attribute_exists(id)',
       UpdateExpression: 'set sort = :s',
       ExpressionAttributeValues: {
         ':s': index,
