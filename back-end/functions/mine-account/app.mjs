@@ -2,16 +2,15 @@ import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from '@aws-sdk/li
 import { ddbDocClient, getUser } from 'layer-ddb';
 import { getMilliseconds } from 'layer-date';
 
-const createAccount = async (createUser, event, context) => {
+const putAccount = async (createUser, event, context) => {
   const { awsRequestId } = context;
-  const { timeEpoch } = event.requestContext;
   const item = JSON.parse(event.body);
   item.id = awsRequestId;
   item.amount = 0;
   item.sort = 0;
   item.isHid = false;
   item.createUser = createUser;
-  item.createDate = getMilliseconds(timeEpoch);
+  item.createDate = getMilliseconds(event.requestContext.timeEpoch);
   const params = {
     TableName: 'account',
     Item: item,
@@ -20,7 +19,7 @@ const createAccount = async (createUser, event, context) => {
   return { id: awsRequestId };
 };
 
-const readAccounts = async (createUser) => {
+const getAccounts = async (createUser) => {
   const params = {
     TableName: 'account',
     IndexName: 'userIndex',
@@ -87,8 +86,8 @@ const updateAccount = async (createUser, event) => {
 const getData = (user, event, context) => {
   if (user.withUser) throw new Error('No permission!');
   switch (event.routeKey) {
-    case 'PUT /accounts': return createAccount(user.openid, event, context);
-    case 'GET /accounts': return readAccounts(user.openid);
+    case 'PUT /accounts': return putAccount(user.openid, event, context);
+    case 'GET /accounts': return getAccounts(user.openid);
     case 'PUT /accounts/{id}': return updateAccount(user.openid, event);
   }
 };

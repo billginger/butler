@@ -1,7 +1,7 @@
 import { UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient, getUser } from 'layer-ddb';
 
-const readUser = (user) => ({
+const processUser = (user) => ({
   user: {
     nickname: user.nickname,
     withUser: !!user.withUser,
@@ -25,7 +25,7 @@ const updateUser = async (openid, body) => {
 
 const getData = (user, event) => {
   switch (event.routeKey) {
-    case 'GET /user': return readUser(user);
+    case 'GET /user': return processUser(user);
     case 'PUT /user': return updateUser(user.openid, event.body);
   }
 };

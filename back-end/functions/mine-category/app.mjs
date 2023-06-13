@@ -2,15 +2,14 @@ import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from '@aws-sdk/li
 import { ddbDocClient, getUser } from 'layer-ddb';
 import { getMilliseconds } from 'layer-date';
 
-const createCategory = async (createUser, event, context) => {
+const putCategory = async (createUser, event, context) => {
   const { awsRequestId } = context;
-  const { timeEpoch } = event.requestContext;
   const item = JSON.parse(event.body);
   item.id = awsRequestId;
   item.sort = 0;
   item.isHid = false;
   item.createUser = createUser;
-  item.createDate = getMilliseconds(timeEpoch);
+  item.createDate = getMilliseconds(event.requestContext.timeEpoch);
   const params = {
     TableName: 'category',
     Item: item,
@@ -19,7 +18,7 @@ const createCategory = async (createUser, event, context) => {
   return { id: awsRequestId };
 };
 
-const readCategories = async (createUser) => {
+const getCategories = async (createUser) => {
   const params = {
     TableName: 'category',
     IndexName: 'userIndex',
@@ -86,8 +85,8 @@ const updateCategory = async (createUser, event) => {
 const getData = (user, event, context) => {
   if (user.withUser) throw new Error('No permission!');
   switch (event.routeKey) {
-    case 'PUT /categories': return createCategory(user.openid, event, context);
-    case 'GET /categories': return readCategories(user.openid);
+    case 'PUT /categories': return putCategory(user.openid, event, context);
+    case 'GET /categories': return getCategories(user.openid);
     case 'PUT /categories/{id}': return updateCategory(user.openid, event);
   }
 };
