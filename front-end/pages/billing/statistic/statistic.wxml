@@ -1,0 +1,65 @@
+<view class="navbar">
+  <view>
+    <view>
+      <image class="icon" src="/images/collect.png" />
+    </view>
+    <view>
+      <text>收入</text>
+    </view>
+  </view>
+  <view>
+    <view>
+      <image class="icon" src="/images/payment.png" />
+    </view>
+    <view>
+      <text>支出</text>
+    </view>
+  </view>
+  <view>
+    <view>
+      <image class="icon" src="/images/pay-collect.png" />
+    </view>
+    <view>
+      <text>转账</text>
+    </view>
+  </view>
+  <view>
+    <view>
+      <image class="icon" src="/images/bill.png" />
+    </view>
+    <view>
+      <text>查询</text>
+    </view>
+  </view>
+  <view class="current">
+    <view>
+      <image class="icon" src="/images/account-book.png" />
+    </view>
+    <view>
+      <text>统计</text>
+    </view>
+  </view>
+</view>
+<view wx:if="{{loaded}}">
+  <view class="list-main">
+    <view class="list-item" wx:for="{{accounts}}" wx:key="id">
+      <view>
+        <view>
+          <text>{{item.label}}</text>
+        </view>
+        <view>
+          <text>{{item.balance}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="list-none">
+      <text class="text-small">没有符合条件的项目</text>
+    </view>
+  </view>
+  <view class="list-footer">
+    <text>合计：</text>
+    <block wx:for="{{total}}" wx:key="*this">
+      <text>{{item}}</text>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 32rpx;
+  font-size: 28rpx;
+  text-align: center;
+  color: #fff;
+  background: #f90;
+}
+.navbar>view {
+  padding: 16rpx 32rpx;
+}
+.navbar .current {
+  background: #0002;
+  border-radius: 16rpx;
+}
+.navbar .icon {
+  width: 60rpx;
+  height: 60rpx;
+}
