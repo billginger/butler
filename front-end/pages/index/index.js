@@ -1,13 +1,9 @@
 import { getData } from '~/libs/get-data'
-import { doubleDigits, twoDecimals } from '~/utils/number'
+import { twoDecimals } from '~/utils/number'
 import { formatDate } from '~/utils/date'
 
 const getDirection = transaction => (
   transaction.accountFrom && transaction.accountTo ? 3 : transaction.accountFrom ? 2 : 1
-)
-
-const getDate = transaction => (
-  `${transaction.dateYear}-${doubleDigits(transaction.dateMonth)}-${doubleDigits(transaction.dateDay)}`
 )
 
 const getAmount = data => {
@@ -21,9 +17,9 @@ const getAmount = data => {
 const processTransaction = data => {
   const { transaction } = data
   if (!transaction) return null
-  transaction.createDate = formatDate(new Date(transaction.createDate))
+  transaction.createDate = formatDate(new Date(transaction.createDate), 'mm')
   transaction.direction = getDirection(transaction)
-  transaction.date = getDate(transaction)
+  transaction.date = formatDate(new Date(transaction.timeEpoch))
   transaction.amount = getAmount(data)
   return transaction
 }
