@@ -2,7 +2,7 @@
   "pages":[
     "pages/landing/landing",
     "pages/index/index",
-    "pages/billing/statistic/statistic",
+    "pages/transaction/statistic/statistic",
     "pages/mine/mine",
     "pages/mine/user/user",
     "pages/mine/account/account",
@@ -29,10 +29,10 @@
       "iconPath": "images/home.png",
       "selectedIconPath": "images/home-selected.png"
     }, {
-      "pagePath": "pages/billing/statistic/statistic",
+      "pagePath": "pages/transaction/statistic/statistic",
       "text": "记账",
-      "iconPath": "images/billing.png",
-      "selectedIconPath": "images/billing-selected.png"
+      "iconPath": "images/transaction.png",
+      "selectedIconPath": "images/transaction-selected.png"
     }, {
       "pagePath": "pages/mine/mine",
       "text": "我的",

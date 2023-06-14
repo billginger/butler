@@ -7,7 +7,7 @@ Page({
     total: [],
   },
   onLoad() {
-    getData('/billing', data => {
+    getData('/transactions', data => {
       wx.stopPullDownRefresh()
       this.setData({
         loaded: true,
