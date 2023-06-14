@@ -44,12 +44,12 @@ Resources:
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        ReadItem:
+        GetUser:
           Type: HttpApi
           Properties:
             Path: /user
             Method: get
-        UpdateItem:
+        UpdateUser:
           Type: HttpApi
           Properties:
             Path: /user
@@ -61,17 +61,17 @@ Resources:
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        CreateItem:
+        PutAccount:
           Type: HttpApi
           Properties:
             Path: /accounts
             Method: put
-        ReadItems:
+        GetAccounts:
           Type: HttpApi
           Properties:
             Path: /accounts
             Method: get
-        UpdateItem:
+        UpdateAccount:
           Type: HttpApi
           Properties:
             Path: /accounts/{id}
@@ -83,17 +83,17 @@ Resources:
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        CreateItem:
+        PutCategory:
           Type: HttpApi
           Properties:
             Path: /categories
             Method: put
-        ReadItems:
+        GetCategories:
           Type: HttpApi
           Properties:
             Path: /categories
             Method: get
-        UpdateItem:
+        UpdateCategory:
           Type: HttpApi
           Properties:
             Path: /categories/{id}
@@ -105,7 +105,7 @@ Resources:
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        SortItems:
+        SortTable:
           Type: HttpApi
           Properties:
             Path: /sort/{table}
