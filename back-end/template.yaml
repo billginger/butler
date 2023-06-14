@@ -37,6 +37,43 @@ Resources:
           Properties:
             Path: /home
             Method: get
+  TransactionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/transaction
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        PutTransaction:
+          Type: HttpApi
+          Properties:
+            Path: /transactions
+            Method: put
+        GetTransactions:
+          Type: HttpApi
+          Properties:
+            Path: /transactions
+            Method: get
+        QueryTransactions:
+          Type: HttpApi
+          Properties:
+            Path: /transactions
+            Method: post
+        GetTransaction:
+          Type: HttpApi
+          Properties:
+            Path: /transactions/{id}
+            Method: get
+        UpdateTransaction:
+          Type: HttpApi
+          Properties:
+            Path: /transactions/{id}
+            Method: put
+        DeleteTransaction:
+          Type: HttpApi
+          Properties:
+            Path: /transactions/{id}
+            Method: delete
   MineUserFunction:
     Type: AWS::Serverless::Function
     Properties:
