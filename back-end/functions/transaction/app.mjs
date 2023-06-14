@@ -21,7 +21,7 @@ const getAccounts = async (user) => {
 
 const getCategories = async (user, event) => {
   const createUser = user.withUser || user.openid;
-  const { direction } = event.pathParameters;
+  const direction = event.pathParameters.direction * 1;
   const params = {
     TableName: 'category',
     IndexName: 'userIndex',
