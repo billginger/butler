@@ -12,7 +12,7 @@ const getTransaction = async (createUser) => {
     },
     Limit: 1,
     ScanIndexForward: false,
-    ProjectionExpression: 'dateYear, dateMonth, dateDay, summary, amount, accountFrom, accountTo, ledger, createDate',
+    ProjectionExpression: 'timeEpoch, summary, amount, accountFrom, accountTo, ledger, createDate',
   };
   const data = await ddbDocClient.send(new QueryCommand(params));
   const transaction = data.Items[0];
