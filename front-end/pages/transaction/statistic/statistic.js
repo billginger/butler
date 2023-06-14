@@ -31,7 +31,7 @@ Page({
     total: [],
   },
   onLoad() {
-    getData('/transactions', data => {
+    getData('/transaction/accounts', data => {
       wx.stopPullDownRefresh()
       this.setData({
         loaded: true,
