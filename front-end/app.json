@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/transaction/collect/collect",
     "pages/transaction/payment/payment",
+    "pages/transaction/transfer/transfer",
     "pages/transaction/statistic/statistic",
     "pages/mine/mine",
     "pages/mine/user/user",
