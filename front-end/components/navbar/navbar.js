@@ -29,10 +29,13 @@ Component({
   },
   methods: {
     to: function(e) {
+      const pages = getCurrentPages()
       const { page } = e.currentTarget.dataset
       const url = `/pages/transaction/${page}/${page}`
       if (page == 'statistic') {
         wx.switchTab({ url })
+      } else if (pages.length > 1) {
+        wx.redirectTo({ url })
       } else {
         wx.navigateTo({ url })
       }
