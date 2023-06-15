@@ -51,7 +51,7 @@ const putTransaction = async (user, event, context) => {
   item.ledger = user.withUser || user.openid;
   item.createUser = user.openid;
   item.createDate = getMilliseconds(event.requestContext.timeEpoch);
-  item.isDeleted = 0;
+  item.isDeleted = false;
   const params = {
     TransactItems: [{
       Put: {
