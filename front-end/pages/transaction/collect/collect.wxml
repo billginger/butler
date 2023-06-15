@@ -4,7 +4,7 @@
     <form-date model:value="{{timeString}}" />
     <form-text label="摘要" model:value="{{summary}}" />
     <form-amount model:value="{{amountString}}" />
-    <form-selector label="账户" options="{{accounts}}" model:value="{{accountIndex}}" />
+    <form-selector label="账户" options="{{accounts}}" model:value="{{accountToIndex}}" />
     <form-selector options="{{categories}}" model:value="{{categoryIndex}}" />
   </view>
   <view class="form-footer">
