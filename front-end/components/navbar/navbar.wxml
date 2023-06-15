@@ -4,7 +4,7 @@
     wx:key="key"
     class="{{index == currentIndex ? 'current' : ''}}"
     data-page="{{item.key}}"
-    bindtap="to"
+    bindtap="{{index == currentIndex ? '' : 'to'}}"
   >
     <view>
       <image class="icon" src="/images/{{item.key}}.png" />

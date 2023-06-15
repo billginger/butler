@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16rpx 32rpx;
+  padding: 16rpx 32rpx 24rpx;
   font-size: 28rpx;
   text-align: center;
   color: #fff;
