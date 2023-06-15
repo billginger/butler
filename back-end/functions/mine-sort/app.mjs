@@ -1,4 +1,4 @@
-import { UpdateCommand } from '@aws-sdk/lib-dynamodb';
+import { TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient, getUser } from 'layer-ddb';
 
 const updateSort = async (user, event) => {
@@ -8,20 +8,22 @@ const updateSort = async (user, event) => {
   const tableIndex = tableList.findIndex(value => value == table);
   if (tableIndex == -1) throw new Error('No permission!');
   const items = JSON.parse(event.body);
-  for (let index in items) {
-    const params = {
+  const TransactItems = items.map((item, index) => ({
+    Update: {
       TableName: table,
       Key: {
-        id: items[index],
+        id: item,
       },
-      ConditionExpression: 'attribute_exists(id)',
+      ConditionExpression: 'createUser = :u',
       UpdateExpression: 'set sort = :s',
       ExpressionAttributeValues: {
+        ':u': user.openid,
         ':s': index,
       },
-    };
-    await ddbDocClient.send(new UpdateCommand(params));
-  }
+    },
+  }));
+  const params = { TransactItems };
+  await ddbDocClient.send(new TransactWriteCommand(params));
   return { result: 'success' };
 };
 
