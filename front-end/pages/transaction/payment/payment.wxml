@@ -1,0 +1,13 @@
+<view class="form">
+  <navbar currentIndex="1" />
+  <view class="form-main">
+    <form-date model:value="{{timeString}}" />
+    <form-text label="摘要" model:value="{{summary}}" />
+    <form-amount model:value="{{amountString}}" />
+    <form-selector label="账户" options="{{accounts}}" model:value="{{accountFromIndex}}" />
+    <form-selector options="{{categories}}" model:value="{{categoryIndex}}" />
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>
