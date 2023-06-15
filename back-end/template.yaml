@@ -221,7 +221,7 @@ Resources:
           AttributeType: S
         - AttributeName: createUser
           AttributeType: S
-        - AttributeName: isDeleted
+        - AttributeName: createDate
           AttributeType: N
       KeySchema:
         - AttributeName: id
@@ -234,7 +234,7 @@ Resources:
           KeySchema:
             - AttributeName: createUser
               KeyType: HASH
-            - AttributeName: isDeleted
+            - AttributeName: createDate
               KeyType: RANGE
           Projection:
             ProjectionType: ALL

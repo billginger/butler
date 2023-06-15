@@ -5,7 +5,7 @@ const getTransaction = async (createUser) => {
   const params = {
     TableName: 'transaction',
     IndexName: 'userIndex',
-    KeyConditionExpression: 'createUser = :u and isDeleted = :d',
+    KeyConditionExpression: 'createUser = :u and createDate > :d',
     ExpressionAttributeValues: {
       ':u': createUser,
       ':d': 0,
