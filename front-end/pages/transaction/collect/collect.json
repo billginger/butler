@@ -1,0 +1,12 @@
+{
+  "navigationBarBackgroundColor": "#f90",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar",
+    "form-date": "/components/form-date/form-date",
+    "form-text": "/components/form-text/form-text",
+    "form-amount": "/components/form-amount/form-amount",
+    "form-selector": "/components/form-selector/form-selector"
+  }
+}

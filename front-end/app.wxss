@@ -19,6 +19,9 @@ switch {
 .radio-label text {
   vertical-align: middle;
 }
+.picker {
+  min-height: 42rpx;
+}
 .container {
   margin: 16rpx 0;
   padding: 32rpx 16rpx;

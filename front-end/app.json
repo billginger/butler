@@ -2,6 +2,7 @@
   "pages":[
     "pages/landing/landing",
     "pages/index/index",
+    "pages/transaction/collect/collect",
     "pages/transaction/statistic/statistic",
     "pages/mine/mine",
     "pages/mine/user/user",
