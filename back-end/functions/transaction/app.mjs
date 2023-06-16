@@ -1,20 +1,6 @@
-import { QueryCommand, TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
-import { ddbDocClient, getUser, getAccounts } from 'layer-ddb';
+import { TransactWriteCommand } from '@aws-sdk/lib-dynamodb';
+import { ddbDocClient, getUser, getAccounts, getCategories } from 'layer-ddb';
 import { getMilliseconds } from 'layer-date';
-
-const getCategories = async (createUser) => {
-  const params = {
-    TableName: 'category',
-    IndexName: 'userIndex',
-    KeyConditionExpression: 'createUser = :u',
-    ExpressionAttributeValues: {
-      ':u': createUser,
-    },
-    ProjectionExpression: 'id, direction, label, sort, isHid',
-  };
-  const data = await ddbDocClient.send(new QueryCommand(params));
-  return data.Items;
-};
 
 const getOptions = async (user) => {
   const createUser = user.withUser || user.openid;
