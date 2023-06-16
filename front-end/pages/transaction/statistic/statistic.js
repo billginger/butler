@@ -8,12 +8,12 @@ Page({
     total: [],
   },
   onLoad() {
-    getData('/transaction/accounts', data => {
+    getData('/transaction/options', data => {
       wx.stopPullDownRefresh()
       this.setData({
         loaded: true,
-        accounts: getAccounts(data),
-        total: getTotal(data),
+        accounts: getAccounts(data.accounts),
+        total: getTotal(data.accounts),
       })
     })
   },

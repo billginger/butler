@@ -1,7 +1,7 @@
 <navbar currentIndex="4" />
 <view wx:if="{{loaded}}">
   <view class="list-main">
-    <view class="list-item" wx:for="{{accounts}}" wx:key="id">
+    <view class="list-item" wx:for="{{accounts}}" wx:if="{{!item.isHid}}" wx:key="id">
       <view>
         <text>{{item.label}}</text>
       </view>

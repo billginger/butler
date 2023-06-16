@@ -5,11 +5,11 @@ import { defaultData, getOptions, processData } from '~/libs/transaction'
 Page({
   data: defaultData(),
   onLoad() {
-    getData('/transaction/options/2', data => {
+    getData('/transaction/options', data => {
       wx.stopPullDownRefresh()
       this.setData({
         accounts: getOptions(data.accounts),
-        categories: getOptions(data.categories),
+        categories: getOptions(data.categories, 2),
       })
     })
   },

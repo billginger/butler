@@ -16,9 +16,13 @@ const defaultData = field => {
   return { ...basic, ...advanced }
 }
 
-const getOptions = data => {
+const getOptions = (data, direction) => {
   const defaultOption = [{ label: '' }]
-  const options = data.sort((a, b) => a.sort - b.sort)
+  let options = data.filter(item => !item.isHid)
+  if (direction) {
+    options = options.filter(item => item.direction == direction)
+  }
+  options.sort((a, b) => a.sort - b.sort)
   return [...defaultOption, ...options]
 }
 
