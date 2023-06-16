@@ -218,6 +218,10 @@ Resources:
           AttributeType: S
         - AttributeName: createDate
           AttributeType: N
+        - AttributeName: ledger
+          AttributeType: S
+        - AttributeName: timeEpoch
+          AttributeType: N
       KeySchema:
         - AttributeName: id
           KeyType: HASH
@@ -230,6 +234,17 @@ Resources:
             - AttributeName: createUser
               KeyType: HASH
             - AttributeName: createDate
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+        - IndexName: transactionLedgerIndex
+          KeySchema:
+            - AttributeName: ledger
+              KeyType: HASH
+            - AttributeName: timeEpoch
               KeyType: RANGE
           Projection:
             ProjectionType: ALL
