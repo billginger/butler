@@ -4,7 +4,7 @@ import { ddbDocClient, getUser, getAccounts } from 'layer-ddb';
 const getTransaction = async (createUser) => {
   const params = {
     TableName: 'transaction',
-    IndexName: 'userIndex',
+    IndexName: 'transactionUserIndex',
     KeyConditionExpression: 'createUser = :u and createDate > :d',
     ExpressionAttributeValues: {
       ':u': createUser,

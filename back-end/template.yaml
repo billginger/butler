@@ -196,7 +196,7 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       GlobalSecondaryIndexes:
-        - IndexName: tokenIndex
+        - IndexName: userIndex
           KeySchema:
             - AttributeName: tokenCode
               KeyType: HASH
@@ -225,7 +225,7 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       GlobalSecondaryIndexes:
-        - IndexName: userIndex
+        - IndexName: transactionUserIndex
           KeySchema:
             - AttributeName: createUser
               KeyType: HASH
@@ -252,7 +252,7 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       GlobalSecondaryIndexes:
-        - IndexName: userIndex
+        - IndexName: accountIndex
           KeySchema:
             - AttributeName: createUser
               KeyType: HASH
@@ -277,7 +277,7 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       GlobalSecondaryIndexes:
-        - IndexName: userIndex
+        - IndexName: categoryIndex
           KeySchema:
             - AttributeName: createUser
               KeyType: HASH
