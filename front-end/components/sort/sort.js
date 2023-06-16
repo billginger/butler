@@ -10,6 +10,7 @@ Component({
     addGlobalClass: true,
   },
   data: {
+    directions: ['收入', '支出', '转账'],
     items: [],
     itemHeight: 0,
     areaHeight: 0,
@@ -18,7 +19,7 @@ Component({
   },
   ready: function() {
     const data = wx.getStorageSync('cacheData')
-    const itemHeight = data[0].balance ? 62 : 41
+    const itemHeight = 62
     const areaHeight = data.length * itemHeight + 6
     const items = getItems(data, itemHeight)
     this.setData({ itemHeight, areaHeight, items })

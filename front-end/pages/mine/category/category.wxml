@@ -13,7 +13,7 @@
         class="sort-button"
         size="mini"
         bindtap="toCategorySort"
-        wx:if="{{categoriesDirection.length > 1}}"
+        wx:if="{{categories.length > 1}}"
       >
         排序
       </button>

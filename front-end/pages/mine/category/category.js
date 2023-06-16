@@ -39,8 +39,8 @@ Page({
     })
   },
   toCategorySort() {
-    const { categoriesDirection } = this.data
-    wx.setStorageSync('cacheData', categoriesDirection)
+    const { categories } = this.data
+    wx.setStorageSync('cacheData', categories)
     wx.navigateTo({
       url: '../category-sort/category-sort',
     })
