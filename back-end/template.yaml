@@ -44,15 +44,10 @@ Resources:
       Policies:
         - AmazonDynamoDBFullAccess
       Events:
-        GetTransactionAccounts:
-          Type: HttpApi
-          Properties:
-            Path: /transaction/accounts
-            Method: get
         GetTransactionOptions:
           Type: HttpApi
           Properties:
-            Path: /transaction/options/{direction}
+            Path: /transaction/options
             Method: get
         PutTransaction:
           Type: HttpApi

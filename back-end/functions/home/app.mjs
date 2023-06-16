@@ -1,5 +1,5 @@
 import { QueryCommand } from '@aws-sdk/lib-dynamodb';
-import { ddbDocClient, getUser } from 'layer-ddb';
+import { ddbDocClient, getUser, getAccounts } from 'layer-ddb';
 
 const getTransaction = async (createUser) => {
   const params = {
@@ -19,19 +19,9 @@ const getTransaction = async (createUser) => {
   return transaction;
 };
 
-const getAccounts = async (transaction) => {
+const processAccounts = async (transaction) => {
   if (!transaction) return [];
-  const params = {
-    TableName: 'account',
-    IndexName: 'userIndex',
-    KeyConditionExpression: 'createUser = :u',
-    ExpressionAttributeValues: {
-      ':u': transaction.ledger,
-    },
-    ProjectionExpression: 'id, currency',
-  };
-  const data = await ddbDocClient.send(new QueryCommand(params));
-  const accounts = data.Items;
+  const accounts = await getAccounts(transaction.ledger, 'id, currency');
   delete transaction.ledger;
   return accounts;
 };
@@ -40,7 +30,7 @@ export const handler = async (event) => {
   try {
     const user = await getUser(event);
     const transaction = await getTransaction(user.openid);
-    const accounts = await getAccounts(transaction);
+    const accounts = await processAccounts(transaction);
     return {
       statusCode: 200,
       body: JSON.stringify({

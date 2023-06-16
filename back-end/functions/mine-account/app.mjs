@@ -1,5 +1,5 @@
-import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
-import { ddbDocClient, getUser } from 'layer-ddb';
+import { GetCommand, PutCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
+import { ddbDocClient, getUser, getAccounts } from 'layer-ddb';
 import { getMilliseconds } from 'layer-date';
 
 const putAccount = async (createUser, event, context) => {
@@ -17,20 +17,6 @@ const putAccount = async (createUser, event, context) => {
   };
   await ddbDocClient.send(new PutCommand(params));
   return { id: awsRequestId };
-};
-
-const getAccounts = async (createUser) => {
-  const params = {
-    TableName: 'account',
-    IndexName: 'userIndex',
-    KeyConditionExpression: 'createUser = :u',
-    ExpressionAttributeValues: {
-      ':u': createUser,
-    },
-    ProjectionExpression: 'id, label, currency, amount, sort, isHid',
-  };
-  const data = await ddbDocClient.send(new QueryCommand(params));
-  return data.Items;
 };
 
 const getAccount = async (id, createUser) => {
