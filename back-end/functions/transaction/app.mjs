@@ -81,10 +81,7 @@ const processTransactions = async (items) => {
 const queryTransactions = async (user, event) => {
   const ledger = user.withUser || user.openid;
   const item = JSON.parse(event.body);
-  let FilterExpression = 'isDeleted = :d';
-  if (item.summary.length) {
-    FilterExpression += ' and contains(summary, :s)';
-  }
+  let FilterExpression = 'isDeleted = :d and contains(summary, :s)';
   switch (item.direction) {
     case 1:
       FilterExpression += ' and attribute_not_exists(accountFrom) and attribute_exists(accountTo)';
