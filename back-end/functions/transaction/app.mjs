@@ -81,23 +81,26 @@ const processTransactions = async (items) => {
 const queryTransactions = async (user, event) => {
   const ledger = user.withUser || user.openid;
   const item = JSON.parse(event.body);
-  let FilterExpression = 'contains(summary, :s)';
+  let FilterExpression = 'isDeleted = :d';
+  if (item.summary.length) {
+    FilterExpression += ' and contains(summary, :s)';
+  }
   switch (item.direction) {
     case 1:
-      FilterExpression += 'and attribute_not_exists(accountFrom) and attribute_exists(accountTo)';
+      FilterExpression += ' and attribute_not_exists(accountFrom) and attribute_exists(accountTo)';
       break;
     case 2:
-      FilterExpression += 'and attribute_exists(accountFrom) and attribute_not_exists(accountTo)';
+      FilterExpression += ' and attribute_exists(accountFrom) and attribute_not_exists(accountTo)';
       break;
     case 3:
-      FilterExpression += 'and attribute_exists(accountFrom) and attribute_exists(accountTo)';
+      FilterExpression += ' and attribute_exists(accountFrom) and attribute_exists(accountTo)';
       break;
   }
   if (item.account) {
-    FilterExpression += 'and accountFrom = :a or accountTo = :a';
+    FilterExpression += ' and accountFrom = :a or accountTo = :a';
   }
   if (item.category) {
-    FilterExpression += 'and category = :c';
+    FilterExpression += ' and category = :c';
   }
   const params = {
     TableName: 'transaction',
@@ -108,12 +111,13 @@ const queryTransactions = async (user, event) => {
       ':l': ledger,
       ':f': item.timeFrom,
       ':t': item.timeTo,
+      ':d': false,
       ':s': item.summary,
       ':a': item.account,
       ':c': item.category,
     },
     ScanIndexForward: false,
-    ProjectionExpression: 'timeEpoch, summary, amount, accountFrom, accountTo, category, createUser, createDate',
+    ProjectionExpression: 'id, timeEpoch, summary, amount, accountFrom, accountTo, category, createUser, createDate',
   };
   const data = await ddbDocClient.send(new QueryCommand(params));
   if (!data.Items.length) return [];
