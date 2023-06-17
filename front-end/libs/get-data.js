@@ -1,4 +1,5 @@
 import config from '~/config'
+import { showRequestFail } from './show-toast'
 
 const getData = (path, callback) => {
   const token = wx.getStorageSync('token')
@@ -7,20 +8,12 @@ const getData = (path, callback) => {
     url: config.apiUrl + path,
     data: { token },
     success: res => {
-      if (res.statusCode == 200) {
-        callback(res.data)
-      } else {
-        console.error(res.errMsg)
-      }
-    },
-    fail: res => {
-      wx.showToast({
-        title: '网络请求失败',
-        icon: 'error',
-      })
-    },
-    complete: res => {
+      if (res.statusCode != 200) return showRequestFail()
       wx.hideLoading()
+      callback(res.data)
+    },
+    fail: () => {
+      showRequestFail()
     },
   })
 }

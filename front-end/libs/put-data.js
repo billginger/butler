@@ -1,4 +1,5 @@
 import config from '~/config'
+import { showRequestFail } from './show-toast'
 
 const putData = (path, data, callback) => {
   const token = wx.getStorageSync('token')
@@ -8,25 +9,14 @@ const putData = (path, data, callback) => {
     data,
     method: 'PUT',
     success: res => {
-      if (res.statusCode == 200) {
-        setTimeout(() => {
-          wx.showToast({
-            title: '提交成功',
-          })
-        }, 100)
-        callback()
-      } else {
-        console.error(res.errMsg)
-      }
-    },
-    fail: res => {
+      if (res.statusCode != 200) return showRequestFail()
       wx.showToast({
-        title: '网络请求失败',
-        icon: 'error',
+        title: '提交成功',
       })
+      callback()
     },
-    complete: res => {
-      wx.hideLoading()
+    fail: () => {
+      showRequestFail()
     },
   })
 }
