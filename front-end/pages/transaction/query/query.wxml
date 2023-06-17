@@ -1,0 +1,14 @@
+<view class="form">
+  <navbar currentIndex="3" />
+  <view class="form-main">
+    <form-date label="起始日期" end="{{dateTo}}" model:value="{{dateFrom}}" />
+    <form-date label="截至日期" start="{{dateFrom}}" model:value="{{dateTo}}" />
+    <form-text label="摘要" model:value="{{summary}}" />
+    <form-selector label="交易类型" options="{{directions}}" model:value="{{directionIndex}}" />
+    <form-selector label="账户" options="{{accounts}}" model:value="{{accountIndex}}" />
+    <form-selector options="{{categories}}" model:value="{{categoryIndex}}" />
+  </view>
+  <view class="form-footer">
+    <button type="primary" bindtap="submit" loading="{{loading}}">提交</button>
+  </view>
+</view>

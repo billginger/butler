@@ -5,6 +5,7 @@
     "pages/transaction/collect/collect",
     "pages/transaction/payment/payment",
     "pages/transaction/transfer/transfer",
+    "pages/transaction/query/query",
     "pages/transaction/statistic/statistic",
     "pages/mine/mine",
     "pages/mine/user/user",
