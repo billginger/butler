@@ -1,5 +1,5 @@
 import { getData } from '~/libs/get-data'
-import { getAccounts, getTotal } from '~/libs/get-accounts'
+import { getAccounts, getTotal } from '~/libs/accounts'
 
 Page({
   data: {
