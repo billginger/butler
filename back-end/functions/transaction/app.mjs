@@ -116,6 +116,7 @@ const queryTransactions = async (user, event) => {
     ProjectionExpression: 'timeEpoch, summary, amount, accountFrom, accountTo, category, createUser, createDate',
   };
   const data = await ddbDocClient.send(new QueryCommand(params));
+  if (!data.Items.length) return [];
   const transactions = await processTransactions(data.Items);
   return transactions;
 };
