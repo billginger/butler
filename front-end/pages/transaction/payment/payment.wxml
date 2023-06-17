@@ -1,7 +1,7 @@
 <view class="form">
   <navbar currentIndex="1" />
   <view class="form-main">
-    <form-date model:value="{{timeString}}" />
+    <form-date model:value="{{dateString}}" />
     <form-text label="摘要" model:value="{{summary}}" />
     <form-amount model:value="{{amountString}}" />
     <form-selector label="账户" options="{{accounts}}" model:value="{{accountFromIndex}}" />

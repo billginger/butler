@@ -1,6 +1,6 @@
 const defaultData = field => {
   const basic = {
-    timeString: '',
+    dateString: '',
     summary: '',
     amountString: '',
     accountFromIndex: 0,
@@ -27,9 +27,9 @@ const getOptions = (data, direction) => {
 }
 
 const processData = (data, direction) => {
-  const { timeString, summary, amountString, accountFromIndex, accountToIndex, categoryIndex } = data
+  const { dateString, summary, amountString, accountFromIndex, accountToIndex, categoryIndex } = data
   const checkList = [
-    { label: '日期', value: timeString.length },
+    { label: '日期', value: dateString.length },
     { label: '摘要', value: summary.length },
     { label: '金额', value: amountString.length },
     { label: '账户', value: accountFromIndex },
@@ -53,7 +53,7 @@ const processData = (data, direction) => {
     }
   }
   const { accounts, categories } = data
-  const timeEpoch = new Date(timeString).getTime()
+  const timeEpoch = new Date(dateString).getTime()
   const amount = amountString * 1
   const category = categories[categoryIndex].id
   const newData = { timeEpoch, summary, amount, category }
