@@ -21,6 +21,12 @@ Page({
         icon: 'none',
       })
     }
+    if (label == '全部') {
+      return wx.showToast({
+        title: '名称不能为全部！',
+        icon: 'none',
+      })
+    }
     this.setData({
       loading: true,
     })
