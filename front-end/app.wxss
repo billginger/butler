@@ -70,13 +70,13 @@ switch {
   border-bottom: 2rpx solid #666;
 }
 .table-column-1 {
-  width: 28%;
+  width: 30%;
 }
 .table-column-2 {
-  width: 44%;
+  width: 40%;
 }
 .table-column-3 {
-  width: 28%;
+  width: 30%;
 }
 /* 收入 */
 .direction-1 {
