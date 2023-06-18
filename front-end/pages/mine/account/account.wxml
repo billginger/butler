@@ -32,7 +32,7 @@
     </view>
   </view>
   <view class="list-footer">
-    <text>合计：</text>
+    <text class="text-bold">合计：</text>
     <block wx:for="{{total}}" wx:key="*this">
       <text>{{item}}</text>
     </block>

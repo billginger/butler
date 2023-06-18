@@ -3,7 +3,7 @@ const doubleDigits = n => (
 )
 
 const twoDecimals = n => {
-  let s = n.toString()
+  let s = n.toLocaleString()
   let d = s.indexOf('.')
   if (d < 0) {
     d = s.length

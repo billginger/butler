@@ -84,7 +84,7 @@ switch {
 }
 /* 支出 */
 .direction-2 {
-  color: #800000;
+  color: #a00000;
 }
 /* 转账 */
 .direction-3 {
