@@ -1,0 +1,6 @@
+.container {
+  padding: 24rpx 16rpx;
+}
+.container>text:nth-child(n+3) {
+  margin-left: 24rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#f90",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar"
+  }
+}

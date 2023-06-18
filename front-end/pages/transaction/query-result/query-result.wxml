@@ -1,0 +1,57 @@
+<navbar currentIndex="3" />
+<view class="container">
+  <view>
+    <text class="text-bold">日期：</text>
+    <text>{{queryData.dateFrom}}</text>
+    <text> ~ </text>
+    <text>{{queryData.dateTo}}</text>
+  </view>
+  <view wx:if="{{queryData.summary}}">
+    <text class="text-bold">摘要：</text>
+    <text>{{queryData.summary}}</text>
+  </view>
+  <view wx:if="{{queryData.directionText != '全部'}}">
+    <text class="text-bold">交易类型：</text>
+    <text>{{queryData.directionText}}</text>
+  </view>
+  <view wx:if="{{queryData.accountText != '全部'}}">
+    <text class="text-bold">账户：</text>
+    <text>{{queryData.accountText}}</text>
+  </view>
+  <view wx:if="{{queryData.categoryText != '全部'}}">
+    <text class="text-bold">分类：</text>
+    <text>{{queryData.categoryText}}</text>
+  </view>
+</view>
+<view class="container">
+  <view class="table">
+    <view class="table-header">
+      <view class="table-column-1">
+        <text>日期</text>
+      </view>
+      <view class="table-column-2">
+        <text>摘要</text>
+      </view>
+      <view class="table-column-3">
+        <text>金额</text>
+      </view>
+    </view>
+    <view class="table-body" wx:for="{{transactions}}" wx:key="id">
+      <view class="table-column-1">
+        <text>{{item.date}}</text>
+      </view>
+      <view class="table-column-2">
+        <text>{{item.summary}}</text>
+      </view>
+      <view class="table-column-3 text-right">
+        <text class="direction-{{item.direction}}">{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="container">
+  <text class="text-bold">合计：</text>
+  <block wx:for="{{total}}" wx:key="*this">
+    <text class="direction-{{item.direction}}">{{item.amount}}</text>
+  </block>
+</view>
