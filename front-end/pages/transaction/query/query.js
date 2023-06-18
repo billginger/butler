@@ -14,19 +14,6 @@ const directions = [
   ...['收入', '支出', '转账'].map((label, index) => ({ label, value: index + 1 }))
 ]
 
-const processData = (transactions, accounts, categories) => (
-  transactions.map(item => {
-    if (item.accountFrom) {
-      item.accountFrom = accounts.find(element => element.id == item.accountFrom).label
-    }
-    if (item.accountTo) {
-      item.accountTo = accounts.find(element => element.id == item.accountTo).label
-    }
-    item.category = categories.find(element => element.id == item.category).label
-    return item
-  })
-)
-
 Page({
   data: {
     directions,
@@ -76,8 +63,21 @@ Page({
     this.setData({
       loading: true,
     })
-    postData('/transactions', requestData, responseData => {
-      const data = processData(responseData, accounts, categories)
+    postData('/transactions', requestData, transactions => {
+      this.setData({
+        loading: false,
+      })
+      if (!transactions.length) {
+        return wx.showToast({
+          title: '没有项目匹配',
+          icon: 'error',
+        })
+      }
+      const directionText = directions[directionIndex].label
+      const accountText = accounts[accountIndex].label
+      const categoryText = categories[categoryIndex].label
+      const queryData = { dateFrom, dateTo, summary, directionText, accountText, categoryText }
+      const data = { queryData, accounts, categories, transactions }
       wx.setStorageSync('cacheData', data)
       wx.navigateTo({
         url: '../query-result/query-result',
